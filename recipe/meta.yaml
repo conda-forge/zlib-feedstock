@@ -18,6 +18,8 @@ build:
 requirements:
     build:
         - cmake
+        - python  # [win]
+        - msinttypes  # [win and py<35]
 
 test:
     commands:
