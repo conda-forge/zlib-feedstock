@@ -5,7 +5,7 @@ Home: http://zlib.net/
 
 Package license: zlib (http://zlib.net/zlib_license.html)
 
-Feedstock license: BSD
+Feedstock license: BSD 3-Clause
 
 Summary: Massively spiffy yet delicately unobtrusive compression library
 
