@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./configure --shared --prefix=$PREFIX
+CFLAGS="-fPIC -O3" ./configure --shared --prefix=$PREFIX
 
 make
 make check
