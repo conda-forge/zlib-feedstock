@@ -10,7 +10,7 @@ source:
     sha256: 36658cb768a54c1d4dec43c3116c27ed893e88b02ecfcb44f2166f9c0b7f2a0d
 
 build:
-    number: 3
+    number: 4
     features:
         - vc9  # [win and py27]
         - vc10  # [win and py34]
@@ -25,7 +25,7 @@ requirements:
 test:
     commands:
         - test -f ${PREFIX}/lib/libz.a  # [unix]
-        - conda inspect linkages -n _test zlib  # [linux]
+        - conda inspect linkages -p ${PREFIX} zlib  # [linux]
 
 about:
     home: http://zlib.net/
