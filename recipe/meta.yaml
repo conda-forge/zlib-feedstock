@@ -30,7 +30,8 @@ test:
 
 about:
     home: http://zlib.net/
-    license: zlib (http://zlib.net/zlib_license.html)
+    # http://zlib.net/zlib_license.html
+    license: zlib
     summary: Massively spiffy yet delicately unobtrusive compression library
     license_family: Other
     license_file: license.txt
