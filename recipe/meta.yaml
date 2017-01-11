@@ -1,4 +1,4 @@
-{% set version = "1.2.8" %}
+{% set version = "1.2.10" %}
 
 package:
     name: zlib
@@ -7,10 +7,10 @@ package:
 source:
     fn: zlib-{{ version }}.tar.gz
     url: http://zlib.net/zlib-{{ version }}.tar.gz
-    sha256: 36658cb768a54c1d4dec43c3116c27ed893e88b02ecfcb44f2166f9c0b7f2a0d
+    sha256: 8d7e9f698ce48787b6e1c67e6bff79e487303e66077e25cb9784ac8835978017
 
 build:
-    number: 3
+    number: 0
     features:
         - vc9  # [win and py27]
         - vc10  # [win and py34]
