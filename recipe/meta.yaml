@@ -22,6 +22,7 @@ requirements:
         - python  # [win]
         - cmake  # [win]
         - msinttypes  # [win and py<35]
+        - {{ compiler('c') }}
 
 test:
     commands:
@@ -41,3 +42,4 @@ extra:
         - groutr
         - msarahan
         - ocefpaf
+        - mingwandroid
