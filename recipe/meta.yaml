@@ -14,8 +14,8 @@ build:
     features:
         - vc{{ vc }}  # [win]
     run_exports:
-      # mostly OK, but some scary symbol removal.  Let's try for trusting them.
-      #    https://abi-laboratory.pro/tracker/timeline/zlib/
+        # mostly OK, but some scary symbol removal.  Let's try for trusting them.
+        #    https://abi-laboratory.pro/tracker/timeline/zlib/
         - {{ pin_subpackage('zlib', max_pin='x.x')
 
 requirements:
