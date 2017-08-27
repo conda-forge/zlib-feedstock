@@ -1,8 +1,9 @@
 #!/bin/bash
 
-CFLAGS="-fPIC" ./configure --shared --prefix=$PREFIX
+./configure --prefix=${PREFIX}  \
+            --shared
 
-make
+make -j${CPU_COUNT} ${VERBOSE_AT}
 make check
 make install
 
