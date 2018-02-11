@@ -53,7 +53,7 @@ install:
 
     # Configure the VM.
     - cmd: conda.exe install -n root --quiet --yes conda-forge-build-setup
-    - cmd: run_conda_forge_build_setup
+    - cmd: call run_conda_forge_build_setup.bat
 
     # testing purposes: get conda-build from defaults
     - cmd: conda install -n root --quiet --yes -c defaults conda-build
