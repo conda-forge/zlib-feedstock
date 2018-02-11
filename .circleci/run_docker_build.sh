@@ -54,7 +54,7 @@ echo "$config" > ~/.condarc
 # A lock sometimes occurs with incomplete builds. The lock file is stored in build_artifacts.
 conda clean --lock
 
-mkdir -p /home/conda/feedstock_root/build_artifacts/work
+ls -Rla /home/conda
 
 conda install --yes --quiet conda-forge-build-setup
 source run_conda_forge_build_setup
