@@ -4,31 +4,22 @@
 
 environment:
 
-  # SDK v7.0 MSVC Express 2008's SetEnv.cmd script will fail if the
-  # /E:ON and /V:ON options are not enabled in the batch script intepreter
-  # See: http://stackoverflow.com/a/13751649/163740
-  CMD_IN_ENV: "cmd /E:ON /V:ON /C obvci_appveyor_python_build_env.cmd"
-
   BINSTAR_TOKEN:
     # The BINSTAR_TOKEN secure variable. This is defined canonically in conda-forge.yml.
     secure: ipv/06DzgA7pzz2CIAtbPxZSsphDtF+JFyoWRnXkn3O8j7oRe3rzqj3LOoq2DZp4
 
   matrix:
-    - TARGET_ARCH: x86
-      CONDA_PY: 27
-      CONDA_INSTALL_LOCN: C:\\Miniconda
+    - CONFIG: appveyor_python2.7target_platformwin-32
 
-    - TARGET_ARCH: x64
-      CONDA_PY: 27
-      CONDA_INSTALL_LOCN: C:\\Miniconda-x64
+    - CONFIG: appveyor_python2.7target_platformwin-64
 
-    - TARGET_ARCH: x86
-      CONDA_PY: 35
-      CONDA_INSTALL_LOCN: C:\\Miniconda35
+    - CONFIG: appveyor_python3.5target_platformwin-32
 
-    - TARGET_ARCH: x64
-      CONDA_PY: 35
-      CONDA_INSTALL_LOCN: C:\\Miniconda35-x64
+    - CONFIG: appveyor_python3.5target_platformwin-64
+
+    - CONFIG: appveyor_python3.6target_platformwin-32
+
+    - CONFIG: appveyor_python3.6target_platformwin-64
 
 
 # We always use a 64-bit machine, but can build x86 distributions
@@ -47,26 +38,32 @@ install:
     - cmd: rmdir C:\cygwin /s /q
 
     # Add path, activate `conda` and update conda.
-    - cmd: call %CONDA_INSTALL_LOCN%\Scripts\activate.bat
-    - cmd: conda update --yes --quiet conda
+    # Around November of 2017, Appveyor changed Miniconda3-x64 from an old 3.4 install to a
+    #     symlink to the current version.
+    - cmd: call C:\Miniconda3-x64\Scripts\activate.bat
 
     - cmd: set PYTHONUNBUFFERED=1
 
     # Add our channels.
-    - cmd: conda config --set show_channel_urls true
-    - cmd: conda config --remove channels defaults
-    - cmd: conda config --add channels defaults
-    - cmd: conda config --add channels conda-forge
+    - cmd: conda.exe config --set show_channel_urls true
+    - cmd: conda.exe config --remove channels defaults
+    - cmd: conda.exe config --add channels defaults
+    - cmd: conda.exe config --add channels conda-forge
+
+    # Update conda
+    - cmd: conda.exe update --yes --quiet conda
 
     # Configure the VM.
-    - cmd: conda install -n root --quiet --yes obvious-ci
-    - cmd: conda install -n root --quiet --yes conda-forge-build-setup
+    - cmd: conda.exe install -n root --quiet --yes conda-forge-build-setup
     - cmd: run_conda_forge_build_setup
+
+    # testing purposes: get conda-build from defaults
+    - cmd: conda install -n root --quiet --yes -c defaults conda-build
 
 # Skip .NET project specific build phase.
 build: off
 
 test_script:
-    - "%CMD_IN_ENV% conda build recipe --quiet"
+    - conda.exe build recipe -m ci_support/matrix/%CONFIG%.yaml --quiet
 deploy_script:
-    - cmd: upload_or_check_non_existence .\recipe conda-forge --channel=main
+    - cmd: recipe\upload_or_check_non_existence.py .\recipe conda-forge --channel=main -m ci_support/matrix/%CONFIG%.yaml
