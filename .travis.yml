@@ -57,4 +57,4 @@ install:
 script:
   - conda build ./recipe -m ./ci_support/matrix/${CONFIG}.yaml
 
-  - upload_or_check_non_existence.py/recipe ./recipe conda-forge --channel=main -m ./ci_support/matrix/${CONFIG}.yaml
+  - recipe/upload_or_check_non_existence.py ./recipe conda-forge --channel=main -m ./ci_support/matrix/${CONFIG}.yaml
