@@ -11,21 +11,20 @@ source:
 
 build:
     number: 0
-    features:
-        - vc9  # [win and py27]
-        - vc10  # [win and py34]
-        - vc14  # [win and py>=35]
-    skip: true  # [win and py>35]
+    run_exports:
+        - {{ pin_subpackage('zlib', max_pin='x.x.x') }}
 
 requirements:
     build:
-        - python  # [win]
-        - cmake  # [win]
-        - msinttypes  # [win and py<35]
+        - cmake       # [win]
+        - msinttypes  # [win and vc<14]
+        - {{ compiler('c') }}  # [win]
+        - toolchain   # [unix]
 
 test:
     commands:
-        - test -f ${PREFIX}/lib/libz.a  # [unix]
+        - test -f ${PREFIX}/lib/libz.a              # [unix]
+        - test -f ${PREFIX}/lib/libz${SHLIB_EXT}    # [unix]
         - conda inspect linkages -p ${PREFIX} zlib  # [linux]
 
 about:

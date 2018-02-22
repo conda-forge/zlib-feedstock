@@ -1,0 +1,6 @@
+c_compiler:
+- vs2015
+target_platform:
+- win-32
+zlib:
+- '1.2'
