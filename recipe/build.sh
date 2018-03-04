@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./configure --prefix=${PREFIX}  \
+CFLAGS="-fPIC" ./configure --prefix=${PREFIX}  \
             --shared
 
 make -j${CPU_COUNT} ${VERBOSE_AT}
