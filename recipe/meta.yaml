@@ -21,6 +21,7 @@ requirements:
     build:
         - python  # [win]
         - cmake  # [win]
+        - ninja  # [win]
         - msinttypes  # [win and py<35]
 
 test:
