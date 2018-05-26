@@ -1,0 +1,10 @@
+c_compiler:
+- vs2008
+pin_run_as_build:
+  vc:
+    max_pin: x
+vc:
+- '9'
+zip_keys:
+- - c_compiler
+  - vc
