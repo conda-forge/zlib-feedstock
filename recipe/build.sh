@@ -1,5 +1,8 @@
 #!/bin/bash
 
+export CFLAGS="${CFLAGS} -fPIC"
+export CXXFLAGS="${CXXFLAGS} -fPIC"
+
 ./configure --prefix=${PREFIX}  \
             --shared
 
