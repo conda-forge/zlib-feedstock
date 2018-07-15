@@ -5,7 +5,7 @@ c_compiler:
 channel_sources:
 - conda-forge/label/new,conda-forge,defaults
 channel_targets:
-- conda-forge/label/new
+- conda-forge new
 macos_machine:
 - x86_64-apple-darwin13.4.0
 macos_min_version:
