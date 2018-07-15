@@ -7,19 +7,17 @@
 
 set -xeuo pipefail
 export PYTHONUNBUFFERED=1
+export CI_SUPPORT=/home/conda/feedstock_root/.ci_support
 
 cat >~/.condarc <<CONDARC
-
-channels:
- - conda-forge
- - defaults
 
 conda-build:
  root-dir: /home/conda/feedstock_root/build_artifacts
 
-show_channel_urls: true
-
 CONDARC
+
+# set up the condarc
+python ${CI_SUPPORT}/update_condarc.py ${CI_SUPPORT}/${CONFIG}.yaml
 
 # A lock sometimes occurs with incomplete builds. The lock file is stored in build_artifacts.
 conda clean --lock
@@ -28,6 +26,6 @@ conda install --yes --quiet conda-forge-ci-setup=1 conda-build
 source run_conda_forge_build_setup
 
 conda build /home/conda/recipe_root -m /home/conda/feedstock_root/.ci_support/${CONFIG}.yaml --quiet
-upload_or_check_non_existence /home/conda/recipe_root conda-forge --channel=main -m /home/conda/feedstock_root/.ci_support/${CONFIG}.yaml
+python ${CI_SUPPORT}/upload_package.py /home/conda/recipe_root "${CI_SUPPORT}/${CONFIG}.yaml"
 
 touch "/home/conda/feedstock_root/build_artifacts/conda-forge-build-done-${CONFIG}"
