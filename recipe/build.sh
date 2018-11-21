@@ -1,5 +1,12 @@
 #!/bin/bash
 
+export CFLAGS=$(echo ${CFLAGS} | sed 's|-O2|-O3|g')
+export CPPFLAGS=$(echo ${CPPFLAGS} | sed 's|-O2|-O3|g')
+
+MACH=$(${CC} -dumpmachine)
+if [[ ${MACH} =~ x86_64.* ]] || [[ ${MACH} =~ i?86.* ]]; then
+  export CFLAGS="${CFLAGS} -DUNALIGNED_OK"
+fi
 export CFLAGS="${CFLAGS} -fPIC"
 export CXXFLAGS="${CXXFLAGS} -fPIC"
 
