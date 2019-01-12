@@ -6,15 +6,26 @@ jobs:
   strategy:
     maxParallel: 8
     matrix:
+      linux_aarch64_:
+        CONFIG: linux_aarch64_
       linux_c_compilergcc:
         CONFIG: linux_c_compilergcc
       linux_c_compilertoolchain_c:
         CONFIG: linux_c_compilertoolchain_c
+      linux_ppc64le_:
+        CONFIG: linux_ppc64le_
   steps:
   - script: |
       sudo pip install --upgrade pip
       sudo pip install setuptools shyaml
     displayName: Install dependencies
+
+  # configure qemu binfmt-misc running.  This allows us to run docker containers 
+  # embedded qemu-static
+  - script: |
+      docker run --rm --privileged multiarch/qemu-user-static:register
+      ls /proc/sys/fs/binfmt_misc/
+    condition: not(startsWith(variables['CONFIG'], 'linux_64'))
 
   - script: .azure-pipelines/run_docker_build.sh
     displayName: Run docker build
