@@ -19,6 +19,6 @@ matrix:
 
 script:
 
-  - ./.travis/run_osx_build.sh;
+  - if [[ ${PLATFORM} =~ .*osx.* ]] then ./.travis/run_osx_build.sh; fi
 
-  - ./.travis/run_docker_build.sh;
+  - if [[ ${PLATFORM} =~ .*linux.* ]] then ./.travis/run_docker_build.sh; fi
