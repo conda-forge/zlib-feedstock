@@ -21,4 +21,5 @@ script:
 
   - if [[ ${PLATFORM} =~ .*osx.* ]]; then ./.travis/run_osx_build.sh; fi
 
+  - if [[ ${PLATFORM} =~ .*linux.* ]]; then pip install shyaml --user; fi
   - if [[ ${PLATFORM} =~ .*linux.* ]]; then ./.travis/run_docker_build.sh; fi
