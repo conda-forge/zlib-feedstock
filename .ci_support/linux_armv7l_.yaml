@@ -1,0 +1,16 @@
+BUILD:
+- armv7-conda_cos7-linux-gnueabihf
+c_compiler:
+- gcc
+c_compiler_version:
+- '8'
+cdt_arch:
+- armv7l
+cdt_name:
+- cos7
+channel_sources:
+- conda-forge,c4armv7l,defaults
+channel_targets:
+- conda-forge main
+docker_image:
+- condaforge/linux-anvil-armv7l
