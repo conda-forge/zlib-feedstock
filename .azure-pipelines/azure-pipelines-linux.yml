@@ -18,6 +18,10 @@ jobs:
         CONFIG: linux_aarch64_
         UPLOAD_PACKAGES: True
         DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      linux_armv7l_:
+        CONFIG: linux_armv7l_
+        UPLOAD_PACKAGES: True
+        DOCKER_IMAGE: condaforge/linux-anvil-armv7l
   steps:
   # configure qemu binfmt-misc running.  This allows us to run docker containers
   # embedded qemu-static
