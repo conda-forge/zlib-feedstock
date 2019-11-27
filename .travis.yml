@@ -18,6 +18,4 @@ script:
   - export CI=travis
   - export GIT_BRANCH="$TRAVIS_BRANCH"
 
-  # Internally we need the group id due to how travis works
-  - groupadd -g 32766 lucky
   - if [[ ${PLATFORM} =~ .*linux.* ]]; then ./.travis/run_docker_build.sh; fi
