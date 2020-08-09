@@ -1,0 +1,12 @@
+MACOSX_DEPLOYMENT_TARGET:
+- '11.0'
+channel_sources:
+- conda-forge/label/llvm_rc,conda-forge
+channel_targets:
+- conda-forge main
+macos_machine:
+- arm64-apple-macos11
+macos_min_version:
+- '11.0'
+target_platform:
+- osx-arm64

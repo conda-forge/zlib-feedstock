@@ -1,9 +1,5 @@
 MACOSX_DEPLOYMENT_TARGET:
 - '10.9'
-c_compiler:
-- clang
-c_compiler_version:
-- '9'
 channel_sources:
 - conda-forge,defaults
 channel_targets:
@@ -12,3 +8,5 @@ macos_machine:
 - x86_64-apple-darwin13.4.0
 macos_min_version:
 - '10.9'
+target_platform:
+- osx-64
