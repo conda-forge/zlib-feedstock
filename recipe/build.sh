@@ -1,5 +1,7 @@
 #!/bin/bash
 
+unset CFLAGS
+unset CPPFLAGS
 export CFLAGS="${CFLAGS} -fPIC"
 export CXXFLAGS="${CXXFLAGS} -fPIC"
 
