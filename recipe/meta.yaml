@@ -9,7 +9,7 @@ source:
     sha256: c3e5e9fdd5004dcb542feda5ee4f0ff0744628baf8ed2dd5d66f8ca1197cb1a1
 
 build:
-    number: 1007
+    number: 1008
     run_exports:
         # mostly OK, but some scary symbol removal.  Let's try for trusting them.
         #    https://abi-laboratory.pro/tracker/timeline/zlib/
@@ -20,8 +20,7 @@ requirements:
         - cmake                                 # [win]
         - msinttypes                            # [win and vc<14]
         # compiler on osx depends on zlib itself. Use the bootstrap compiler instead on osx
-        - {{ compiler('c') }}                   # [not osx]
-        - {{ compiler('clang_bootstrap') }}     # [osx]
+        - {{ compiler('c') }}
         - make                                  # [unix]
 
 test:
@@ -31,7 +30,7 @@ test:
 about:
     home: http://zlib.net/
     # http://zlib.net/zlib_license.html
-    license: zlib
+    license: Zlib
     summary: Massively spiffy yet delicately unobtrusive compression library
     license_family: Other
     license_file: license.txt
