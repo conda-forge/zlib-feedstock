@@ -3,7 +3,7 @@ About zlib
 
 Home: http://zlib.net/
 
-Package license: zlib
+Package license: Zlib
 
 Feedstock license: BSD-3-Clause
 
@@ -190,7 +190,4 @@ Feedstock Maintainers
 * [@mingwandroid](https://github.com/mingwandroid/)
 * [@msarahan](https://github.com/msarahan/)
 * [@ocefpaf](https://github.com/ocefpaf/)
-
-
-<!-- dummy commit to enable rerendering -->
 
