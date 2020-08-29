@@ -3,7 +3,7 @@ About zlib
 
 Home: http://zlib.net/
 
-Package license: zlib
+Package license: Zlib
 
 Feedstock license: BSD-3-Clause
 
