@@ -79,7 +79,7 @@ jobs:
             exe, 'create', '-p', 'D:\\mamba', '--yes', '-c', 'conda-forge', 'mamba'
           ])
 
-          exe = 'D:\\mamba\\Scripts\\mamba.exe'
+          exe = 'D:\\mamba\\condabin\\mamba.bat'
           # exe = subprocess.check_output(['ensureconda', '--no-micromamba']).strip().decode()
 
           start = time.monotonic()
@@ -90,10 +90,8 @@ jobs:
 
           print("Created base environment in {} seconds".format(end - start))
 
-
     - powershell: Write-Host "##vso[task.prependpath]$env:CONDA\Scripts"
       displayName: Add conda to PATH
-
 
     - script: set PYTHONUNBUFFERED=1
       displayName: Set PYTHONUNBUFFERED
