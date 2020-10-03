@@ -72,7 +72,7 @@ jobs:
           print("Found conda at", exe)
 
           subprocess.check_call([
-            exe, 'create', '-p', 'D:\\conda', '--force', '--yes', '--file', 'conda.lock'
+            exe, 'create', '-p', 'D:\\conda', '--yes', '--file', 'conda.lock'
           ])
           print("Created base environment", exe)
 
