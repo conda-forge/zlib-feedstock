@@ -15,6 +15,8 @@ jobs:
   timeoutInMinutes: 360
   variables:
     CONDA_BLD_PATH: D:\\bld\\
+    CONDA: D:\\conda\\
+    MAMBA_ROOT_PREFIX: D:\\conda\\
 
   steps:
     - script: |
@@ -51,12 +53,45 @@ jobs:
       condition: contains(variables['CONFIG'], 'vs2008')
       displayName: Patch vs2008 (if needed)
 
-    - task: CondaEnvironment@1
+    - script: |
+        pip install ensureconda
+
+    - task: PythonScript@0
       inputs:
-        packageSpecs: 'python=3.6 conda-build conda conda-forge::conda-forge-ci-setup=3 pip' # Optional
-        installOptions: "-c conda-forge"
-        updateConda: true
-      displayName: Install conda-build and activate environment
+        scriptSource: 'inline'
+        script: |
+          from urllib.request import urlretrieve
+          import subprocess
+          import os
+          import time
+
+          urlretrieve(
+            'https://raw.githubusercontent.com/conda-forge/conda-forge-lockfiles/master/environments/conda-forge-build/conda-win-64.lock',
+            'conda.lock'
+          )
+
+          # provision micromamba
+          # micromamba doesn't install explicit deps yet
+          exe = subprocess.check_output(['ensureconda', '--no-conda', '--no-conda-exe']).strip().decode()
+          print("Found conda at", exe, flush=True)
+
+          subprocess.check_call([
+            exe, 'create', '-p', 'D:\\mamba', '--yes', '-c', 'conda-forge', 'mamba'
+          ])
+
+          exe = 'D:\\mamba\\condabin\\mamba.bat'
+          # exe = subprocess.check_output(['ensureconda', '--no-micromamba']).strip().decode()
+
+          start = time.monotonic()
+          subprocess.check_call([
+            exe, 'create', '-p', 'D:\\conda', '--yes', '--file', 'conda.lock'
+          ])
+          end = time.monotonic()
+
+          print("Created base environment in {} seconds".format(end - start))
+
+    - powershell: Write-Host "##vso[task.prependpath]$env:CONDA\Scripts"
+      displayName: Add conda to PATH
 
     - script: set PYTHONUNBUFFERED=1
       displayName: Set PYTHONUNBUFFERED
