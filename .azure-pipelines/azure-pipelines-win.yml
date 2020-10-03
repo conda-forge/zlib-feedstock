@@ -72,7 +72,7 @@ jobs:
           # exe = subprocess.check_output(['ensureconda', '--no-conda', '--no-conda-exe']).strip().decode()
           # print("Found conda at", exe)
 
-          exe = subprocess.check_output(['ensureconda', '--no-micromambba']).strip().decode()
+          exe = subprocess.check_output(['ensureconda', '--no-micromamba']).strip().decode()
 
           subprocess.check_call([
             exe, 'create', '-p', 'D:\\conda', '--yes', '--file', 'conda.lock'
