@@ -68,8 +68,11 @@ jobs:
           )
 
           # provision micromamba
-          exe = subprocess.check_output(['ensureconda', '--no-conda', '--no-conda-exe']).strip().decode()
-          print("Found conda at", exe)
+          # micromamba doesn't install explicit deps yet
+          # exe = subprocess.check_output(['ensureconda', '--no-conda', '--no-conda-exe']).strip().decode()
+          # print("Found conda at", exe)
+
+          exe = subprocess.check_output(['ensureconda', '--no-micromambba']).strip().decode()
 
           subprocess.check_call([
             exe, 'create', '-p', 'D:\\conda', '--yes', '--file', 'conda.lock'
