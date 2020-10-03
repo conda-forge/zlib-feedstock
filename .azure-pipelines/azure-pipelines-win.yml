@@ -57,12 +57,12 @@ jobs:
     - task: PythonScript@0
       inputs:
         scriptSource: 'inline'
-        script: from urllib.request import urlretrieve; urlretrieve('$(url)', '$(fileName)')
-      variables:
-        - name: url
-          value: https://raw.githubusercontent.com/conda-forge/conda-forge-lockfiles/master/environments/conda-forge-build/conda-win-64.lock
-        - name: fileNmae
-          value: conda.lock
+        script: |
+          from urllib.request import urlretrieve
+          urlretrieve(
+            'https://raw.githubusercontent.com/conda-forge/conda-forge-lockfiles/master/environments/conda-forge-build/conda-win-64.lock',
+            'conda.lock'
+          )
 
     - script: |
         conda install -n base --force --yes --file conda.lock
