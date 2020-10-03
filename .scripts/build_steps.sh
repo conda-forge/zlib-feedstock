@@ -19,8 +19,7 @@ conda-build:
 
 CONDARC
 
-curl -o https://raw.githubusercontent.com/conda-forge/conda-forge-lockfiles/master/environments/conda-forge-build/conda-linux-64.lock conda.lock
-
+curl -o conda-lock https://raw.githubusercontent.com/conda-forge/conda-forge-lockfiles/master/environments/conda-forge-build/conda-linux-64.lock
 
 conda install --yes --quiet conda-forge-ci-setup=3 conda-build pip -c conda-forge
 

@@ -16,6 +16,7 @@ jobs:
   variables:
     CONDA_BLD_PATH: D:\\bld\\
     CONDA: D:\\conda\\
+    MAMBA_ROOT_PREFIX: D:\\conda\\
 
   steps:
     - script: |
@@ -68,11 +69,16 @@ jobs:
           )
 
           # provision micromamba
-          # micromamba doesn't install explicit deps yet
-          # exe = subprocess.check_output(['ensureconda', '--no-conda', '--no-conda-exe']).strip().decode()
-          # print("Found conda at", exe)
+          micromamba doesn't install explicit deps yet
+          exe = subprocess.check_output(['ensureconda', '--no-conda', '--no-conda-exe']).strip().decode()
+          print("Found conda at", exe)
 
-          exe = subprocess.check_output(['ensureconda', '--no-micromamba']).strip().decode()
+          subprocess.check_call([
+            exe, 'create', '-p', 'D:\\mamba', '--yes', '-c', 'conda-forge', 'mamba'
+          ])
+
+          exe = 'D:\\mamba\\Scripts\\bin\\mamba.exe'
+          # exe = subprocess.check_output(['ensureconda', '--no-micromamba']).strip().decode()
 
           subprocess.check_call([
             exe, 'create', '-p', 'D:\\conda', '--yes', '--file', 'conda.lock'

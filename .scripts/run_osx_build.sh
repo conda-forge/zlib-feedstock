@@ -22,7 +22,7 @@ fi
 source ${HOME}/miniforge3/etc/profile.d/conda.sh
 conda activate base
 
-curl -o https://raw.githubusercontent.com/conda-forge/conda-forge-lockfiles/master/environments/conda-forge-build/conda-osx-64.lock conda.lock
+curl -o conda.lock https://raw.githubusercontent.com/conda-forge/conda-forge-lockfiles/master/environments/conda-forge-build/conda-osx-64.lock
 
 echo -e "\n\nInstalling from lockfile and conda-build."
 conda install -n base --quiet --yes --force --file conda.lock
