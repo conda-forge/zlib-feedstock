@@ -69,7 +69,7 @@ jobs:
           )
 
           # provision micromamba
-          micromamba doesn't install explicit deps yet
+          # micromamba doesn't install explicit deps yet
           exe = subprocess.check_output(['ensureconda', '--no-conda', '--no-conda-exe']).strip().decode()
           print("Found conda at", exe)
 
