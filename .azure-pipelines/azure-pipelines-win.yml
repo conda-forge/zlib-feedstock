@@ -51,8 +51,8 @@ jobs:
       condition: contains(variables['CONFIG'], 'vs2008')
       displayName: Patch vs2008 (if needed)
 
-    - script: |
-        pip install ensureconda
+#    - script: |
+#        pip install ensureconda
 
     - task: PythonScript@0
       inputs:
@@ -63,6 +63,9 @@ jobs:
             'https://raw.githubusercontent.com/conda-forge/conda-forge-lockfiles/master/environments/conda-forge-build/conda-win-64.lock',
             'conda.lock'
           )
+
+    - powershell: Write-Host "##vso[task.prependpath]$env:CONDA\Scripts"
+      displayName: Add conda to PATH
 
     - script: |
         conda install -n base --force --yes --file conda.lock
