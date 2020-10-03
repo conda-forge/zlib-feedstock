@@ -62,6 +62,7 @@ jobs:
         script: |
           from urllib.request import urlretrieve
           import subprocess
+          import os
 
           urlretrieve(
             'https://raw.githubusercontent.com/conda-forge/conda-forge-lockfiles/master/environments/conda-forge-build/conda-win-64.lock',
@@ -71,13 +72,19 @@ jobs:
           # provision micromamba
           # micromamba doesn't install explicit deps yet
           exe = subprocess.check_output(['ensureconda', '--no-conda', '--no-conda-exe']).strip().decode()
-          print("Found conda at", exe)
+          print("Found conda at", exe, flush=True)
 
           subprocess.check_call([
             exe, 'create', '-p', 'D:\\mamba', '--yes', '-c', 'conda-forge', 'mamba'
           ])
 
-          exe = 'D:\\mamba\\Scripts\\bin\\mamba.exe'
+          print('ls D:\\mamba'(
+          print(os.listdir('D:\\mamba'))
+
+          print('ls D:\\mamba\\Scripts'(
+          print(os.listdir('D:\\mamba\\Scripts'))
+
+          exe = 'D:\\mamba\\Scripts\\mamba.exe'
           # exe = subprocess.check_output(['ensureconda', '--no-micromamba']).strip().decode()
 
           subprocess.check_call([
