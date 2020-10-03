@@ -66,7 +66,10 @@ jobs:
           )
 
     - powershell: |
+        Set-PSDebug -Trace 1
+
         $conda = (ensureconda) | Out-String
+
         $conda create -p D:\\conda --force --yes --file conda.lock
 
     - powershell: Write-Host "##vso[task.prependpath]$env:CONDA\Scripts"
