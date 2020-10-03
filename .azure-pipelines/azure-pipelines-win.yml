@@ -68,7 +68,7 @@ jobs:
           )
 
           # provision micromamba
-          exe = subprocess.check_output(['ensureconda', '--no-conda', '--no-conda-exe']).strip()
+          exe = subprocess.check_output(['ensureconda', '--no-conda', '--no-conda-exe']).strip().decode()
           print("Found conda at", exe)
 
           subprocess.check_call([
