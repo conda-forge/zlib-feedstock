@@ -15,6 +15,7 @@ jobs:
   timeoutInMinutes: 360
   variables:
     CONDA_BLD_PATH: D:\\bld\\
+    CONDA: D:\\conda\\
 
   steps:
     - script: |
@@ -51,8 +52,8 @@ jobs:
       condition: contains(variables['CONFIG'], 'vs2008')
       displayName: Patch vs2008 (if needed)
 
-#    - script: |
-#        pip install ensureconda
+    - script: |
+        pip install ensureconda
 
     - task: PythonScript@0
       inputs:
@@ -64,11 +65,13 @@ jobs:
             'conda.lock'
           )
 
+    - powershell: |
+        $conda = (ensureconda) | Out-String
+        $conda create -p D:\\conda --force --yes --file conda.lock
+
     - powershell: Write-Host "##vso[task.prependpath]$env:CONDA\Scripts"
       displayName: Add conda to PATH
 
-    - script: |
-        conda install -n base --force --yes --file conda.lock
 
     - script: set PYTHONUNBUFFERED=1
       displayName: Set PYTHONUNBUFFERED
