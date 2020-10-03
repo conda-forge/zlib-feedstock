@@ -70,6 +70,8 @@ jobs:
 
         $conda = (ensureconda) | Out-String
 
+        Write-Host $conda
+
         $conda create -p D:\\conda --force --yes --file conda.lock
 
     - powershell: Write-Host "##vso[task.prependpath]$env:CONDA\Scripts"
