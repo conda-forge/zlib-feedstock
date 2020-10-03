@@ -63,6 +63,7 @@ jobs:
           from urllib.request import urlretrieve
           import subprocess
           import os
+          import time
 
           urlretrieve(
             'https://raw.githubusercontent.com/conda-forge/conda-forge-lockfiles/master/environments/conda-forge-build/conda-win-64.lock',
@@ -78,19 +79,16 @@ jobs:
             exe, 'create', '-p', 'D:\\mamba', '--yes', '-c', 'conda-forge', 'mamba'
           ])
 
-          print('ls D:\\mamba'(
-          print(os.listdir('D:\\mamba'))
-
-          print('ls D:\\mamba\\Scripts'(
-          print(os.listdir('D:\\mamba\\Scripts'))
-
           exe = 'D:\\mamba\\Scripts\\mamba.exe'
           # exe = subprocess.check_output(['ensureconda', '--no-micromamba']).strip().decode()
 
+          start = time.monotonic()
           subprocess.check_call([
             exe, 'create', '-p', 'D:\\conda', '--yes', '--file', 'conda.lock'
           ])
-          print("Created base environment", exe)
+          end = time.monotonic()
+
+          print("Created base environment in {} seconds".format(end - start))
 
 
     - powershell: Write-Host "##vso[task.prependpath]$env:CONDA\Scripts"
