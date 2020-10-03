@@ -60,19 +60,22 @@ jobs:
         scriptSource: 'inline'
         script: |
           from urllib.request import urlretrieve
+          import subprocess
+
           urlretrieve(
             'https://raw.githubusercontent.com/conda-forge/conda-forge-lockfiles/master/environments/conda-forge-build/conda-win-64.lock',
             'conda.lock'
           )
 
-    - powershell: |
-        Set-PSDebug -Trace 1
+          # provision micromamba
+          exe = subprocess.check_output(['ensureconda', '--no-conda', '--no-conda-exe').strip()
+          print("Found conda at", exe)
 
-        $conda = (ensureconda) | Out-String
+          subprocess.check_call([
+            exe, 'create', '-p', 'D:\\conda', '--force', '--yes', '--file', 'conda.lock'
+          ])
+          print("Created base environment", exe)
 
-        Write-Host $conda
-
-        $conda create -p D:\\conda --force --yes --file conda.lock
 
     - powershell: Write-Host "##vso[task.prependpath]$env:CONDA\Scripts"
       displayName: Add conda to PATH
