@@ -51,12 +51,21 @@ jobs:
       condition: contains(variables['CONFIG'], 'vs2008')
       displayName: Patch vs2008 (if needed)
 
-    - task: CondaEnvironment@1
+    - script: |
+        pip install ensureconda
+
+    - task: PythonScript@0
       inputs:
-        packageSpecs: 'python=3.6 conda-build conda conda-forge::conda-forge-ci-setup=3 pip' # Optional
-        installOptions: "-c conda-forge"
-        updateConda: true
-      displayName: Install conda-build and activate environment
+        scriptSource: 'inline'
+        script: from urllib.request import urlretrieve; urlretrieve('$(url)', '$(fileName)')
+      variables:
+        - name: url
+          value: https://raw.githubusercontent.com/conda-forge/conda-forge-lockfiles/master/environments/conda-forge-build/conda-win-64.lock
+        - name: fileNmae
+          value: conda.lock
+
+    - script: |
+        conda install -n base --force --yes --file conda.lock
 
     - script: set PYTHONUNBUFFERED=1
       displayName: Set PYTHONUNBUFFERED
