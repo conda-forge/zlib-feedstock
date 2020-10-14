@@ -5,9 +5,13 @@ Home: http://zlib.net/
 
 Package license: Zlib
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/zlib-feedstock/blob/master/LICENSE.txt)
 
 Summary: Massively spiffy yet delicately unobtrusive compression library
+
+Development: https://github.com/madler/zlib
+
+Documentation: http://zlib.net/manual.html
 
 zlib is designed to be a free, general-purpose, lossless data-compression
 library for use on virtually any computer hardware and operating system.
@@ -190,7 +194,4 @@ Feedstock Maintainers
 * [@mingwandroid](https://github.com/mingwandroid/)
 * [@msarahan](https://github.com/msarahan/)
 * [@ocefpaf](https://github.com/ocefpaf/)
-
-
-<!-- dummy commit to enable rerendering -->
 
