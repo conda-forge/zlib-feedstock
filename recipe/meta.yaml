@@ -1,7 +1,7 @@
 {% set version = "1.2.11" %}
 
 package:
-  name: zlib
+  name: zlib-split
   version: {{ version }}
 
 source:
@@ -9,11 +9,11 @@ source:
   sha256: c3e5e9fdd5004dcb542feda5ee4f0ff0744628baf8ed2dd5d66f8ca1197cb1a1
 
 build:
-  number: 1011
+  number: 1012
   run_exports:
     # mostly OK, but some scary symbol removal.  Let's try for trusting them.
     #  https://abi-laboratory.pro/tracker/timeline/zlib/
-    - {{ pin_subpackage('zlib', max_pin='x.x') }}
+    - {{ pin_subpackage('libzlib', max_pin='x.x') }}
 
 requirements:
   build:
@@ -22,13 +22,59 @@ requirements:
     # compiler on osx depends on zlib itself. Use the bootstrap compiler instead on osx
     - {{ compiler('c') }}
     - make                  # [unix]
+  run:
 
-test:
-  commands:
-    - test -f ${PREFIX}/lib/libz.a            # [unix]
-    - test -f ${PREFIX}/lib/libz${SHLIB_EXT}  # [unix]
-    - if not exist %LIBRARY_BIN%\zlib.dll exit 1  # [win]
-    - if not exist %PREFIX%\zlib.dll exit 1  # [win]
+outputs:
+  - name: libzlib
+    build:
+      run_exports:
+        # mostly OK, but some scary symbol removal.  Let's try for trusting them.
+        #  https://abi-laboratory.pro/tracker/timeline/zlib/
+        - {{ pin_subpackage('libzlib', max_pin='x.x') }}
+    requirements:
+      build:
+        - {{ compiler('c') }}
+      host:
+      run:
+    files:
+      - lib/libz.so.*          # [linux]
+      - lib/libz.*.dylib       # [osx]
+      - Library/bin/zlib.dll   # [win]
+      - zlib.dll               # [win]
+    test:
+      commands:
+        - test ! -f ${PREFIX}/lib/libz.a            # [unix]
+        - test ! -f ${PREFIX}/lib/libz{SHLIB_EXT}   # [unix]
+        - test ! -f ${PREFIX}/include/zlib.h        # [unix]
+        - if not exist %LIBRARY_BIN%\zlib.dll exit 1  # [win]
+        - if not exist %PREFIX%\zlib.dll exit 1  # [win]
+
+  - name: zlib
+    requirements:
+      build:
+        - {{ compiler('c') }}
+      host:
+        - {{ pin_subpackage('libzlib', exact=True) }}
+      run:
+        - {{ pin_subpackage('libzlib', exact=True) }}
+    files:
+      - lib/libz.so            # [linux]
+      - lib/libz.dylib         # [osx]
+      - include                # [unix]
+      - lib/pkgconfig          # [unix]
+      - lib/libz.a             # [unix]
+      - Library/include        # [win]
+      - Library/share          # [win]
+      - Library/lib            # [win]
+    test:
+      commands:
+        - test -f ${PREFIX}/lib/libz.a            # [unix]
+        - test -f ${PREFIX}/lib/libz{SHLIB_EXT}   # [unix]
+        - test -f ${PREFIX}/include/zlib.h        # [unix]
+        - if not exist %LIBRARY_LIB%\zlibstatic.lib exit 1  # [win]
+        - if not exist %LIBRARY_LIB%\zlib.lib exit 1        # [win]
+        - if not exist %LIBRARY_INC%\zlib.h exit 1          # [win]
+
 
 about:
   home: http://zlib.net/
@@ -48,4 +94,5 @@ extra:
     - groutr
     - msarahan
     - ocefpaf
-    - mingwandroid
+    - isuruf
+  feedstock-name: zlib
