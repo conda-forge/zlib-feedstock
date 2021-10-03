@@ -1,5 +1,5 @@
 {% set version = "1.2.11" %}
-{% set build_num = 1012 %}
+{% set build_num = 1013 %}
 
 package:
   name: zlib-split
@@ -11,10 +11,6 @@ source:
 
 build:
   number: {{ build_num }}
-  run_exports:
-    # mostly OK, but some scary symbol removal.  Let's try for trusting them.
-    #  https://abi-laboratory.pro/tracker/timeline/zlib/
-    - {{ pin_subpackage('libzlib', max_pin='x.x') }}
 
 requirements:
   build:
@@ -53,6 +49,11 @@ outputs:
         - if not exist %PREFIX%\zlib.dll exit 1  # [win]
 
   - name: zlib
+    build:
+      run_exports:
+        # mostly OK, but some scary symbol removal.  Let's try for trusting them.
+        #  https://abi-laboratory.pro/tracker/timeline/zlib/
+        - {{ pin_subpackage('libzlib', max_pin='x.x') }}
     requirements:
       build:
         - {{ compiler('c') }}
