@@ -19,7 +19,9 @@ requirements:
     build:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}  # [win32]
-        - cmake  # [win]
+        # Require `cmake-no-system` to break circular dependency;
+        # the `cmake` package on defaults requires `zstd`.
+        - cmake-no-system
         - msinttypes  # [win and vc<14]
         - make  # [not win]
     host:
