@@ -1,5 +1,5 @@
 {% set version = "1.2.11" %}
-{% set build_num = 1013 %}
+{% set build_num = 1014 %}
 
 package:
   name: zlib-split
@@ -47,6 +47,25 @@ outputs:
         - test ! -f ${PREFIX}/include/zlib.h        # [unix]
         - if not exist %LIBRARY_BIN%\zlib.dll exit 1  # [win]
         - if not exist %PREFIX%\zlib.dll exit 1  # [win]
+
+  - name: libzlib-wapi
+    script: bld_winapi.bat   # [win]
+    build:
+      skip: True   # [not win]
+      run_exports:
+        - {{ pin_subpackage('libzlib-wapi', max_pin='x.x') }}
+    requirements:
+      build:
+        - {{ compiler('c') }}
+      host:
+      run:
+      run_constrained:
+        - zlib {{ version }} *_{{ build_num }}
+    files:
+      - Library/bin/zlibwapi.dll   # [win]
+    test:
+      commands:
+        - if not exist "%LIBRARY_BIN%\zlibwapi.dll" exit 1   # [win]
 
   - name: zlib
     build:
