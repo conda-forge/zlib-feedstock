@@ -64,6 +64,7 @@ outputs:
     test:
       commands:
         - if not exist "%LIBRARY_BIN%\zlibwapi.dll" exit 1   # [win]
+        - if not exist "%LIBRARY_LIB%\zlibwapi.lib" exit 1   # [win]
 
   - name: zlib
     build:

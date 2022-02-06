@@ -24,3 +24,4 @@ if errorlevel 1 exit 1
 :: This is needed for example for cuDNN
 :: https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html#install-zlib-windows
 copy "zlib.dll" "%LIBRARY_BIN%\zlibwapi.dll" || exit 1
+copy "zlib.lib" "%LIBRARY_LIB%\zlibwapi.lib" || exit 1
