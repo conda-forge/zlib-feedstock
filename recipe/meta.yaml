@@ -61,10 +61,10 @@ outputs:
       run:
       run_constrained:
         - zlib {{ version }} *_{{ build_num }}
+        - zlib-wapi {{ version }} *_{{ build_num }}
     test:
       commands:
         - if not exist "%LIBRARY_BIN%\zlibwapi.dll" exit 1   # [win]
-        - if not exist "%LIBRARY_LIB%\zlibwapi.lib" exit 1   # [win]
 
   - name: zlib
     build:
@@ -97,6 +97,28 @@ outputs:
         - if not exist %LIBRARY_LIB%\zlib.lib exit 1        # [win]
         - if not exist %LIBRARY_INC%\zlib.h exit 1          # [win]
 
+  - name: zlib-wapi
+    build:
+      skip: True   # [not win]
+      run_exports:
+        - {{ pin_subpackage('libzlib-wapi', max_pin='x.x') }}
+    requirements:
+      build:
+        - {{ compiler('c') }}
+      host:
+        - {{ pin_subpackage('libzlib-wapi', exact=True) }}
+        - {{ pin_subpackage('zlib', exact=True) }}
+      run:
+        - {{ pin_subpackage('libzlib-wapi', exact=True) }}
+        - {{ pin_subpackage('zlib', exact=True) }}
+    files:
+      - Library/include        # [win]
+      - Library/share          # [win]
+      - Library/lib            # [win]
+    test:
+      commands:
+        - if not exist %LIBRARY_LIB%\zlibwapi.lib exit 1   # [win]
+        - if not exist %LIBRARY_INC%\zlib.h exit 1         # [win]
 
 about:
   home: http://zlib.net/
