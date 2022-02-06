@@ -61,8 +61,6 @@ outputs:
       run:
       run_constrained:
         - zlib {{ version }} *_{{ build_num }}
-    files:
-      - Library/bin/zlibwapi.dll   # [win]
     test:
       commands:
         - if not exist "%LIBRARY_BIN%\zlibwapi.dll" exit 1   # [win]
