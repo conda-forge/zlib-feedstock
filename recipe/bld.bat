@@ -36,6 +36,8 @@ cmake -G "NMake Makefiles" ^
       %SRC_DIR%
 if errorlevel 1 exit 1
 
+type CMakeCache.txt
+
 :: Build.
 cmake --build %SRC_DIR% --target INSTALL --config Release --clean-first
 if errorlevel 1 exit 1
