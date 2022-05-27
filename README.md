@@ -21,7 +21,14 @@ Current build status
 ====================
 
 
-<table>
+<table><tr>
+    <td>Travis</td>
+    <td>
+      <a href="https://app.travis-ci.com/conda-forge/zlib-feedstock">
+        <img alt="linux" src="https://img.shields.io/travis/com/conda-forge/zlib-feedstock/main.svg?label=Linux">
+      </a>
+    </td>
+  </tr>
     
   <tr>
     <td>Azure</td>
@@ -103,16 +110,41 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `libzlib, zlib` can be installed with:
+Once the `conda-forge` channel has been enabled, `libzlib, zlib` can be installed with `conda`:
 
 ```
 conda install libzlib zlib
 ```
 
-It is possible to list all of the versions of `libzlib` available on your platform with:
+or with `mamba`:
+
+```
+mamba install libzlib zlib
+```
+
+It is possible to list all of the versions of `libzlib` available on your platform with `conda`:
 
 ```
 conda search libzlib --channel conda-forge
+```
+
+or with `mamba`:
+
+```
+mamba search libzlib --channel conda-forge
+```
+
+Alternatively, `mamba repoquery` may provide more information:
+
+```
+# Search all versions available on your platform:
+mamba repoquery search libzlib --channel conda-forge
+
+# List packages depending on `libzlib`:
+mamba repoquery whoneeds libzlib --channel conda-forge
+
+# List dependencies of `libzlib`:
+mamba repoquery depends libzlib --channel conda-forge
 ```
 
 
