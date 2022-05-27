@@ -5,7 +5,7 @@ Home: http://zlib.net/
 
 Package license: Zlib
 
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/zlib-feedstock/blob/master/LICENSE.txt)
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/zlib-feedstock/blob/main/LICENSE.txt)
 
 Summary: Massively spiffy yet delicately unobtrusive compression library
 
@@ -21,22 +21,15 @@ Current build status
 ====================
 
 
-<table><tr>
-    <td>Travis</td>
-    <td>
-      <a href="https://app.travis-ci.com/conda-forge/zlib-feedstock">
-        <img alt="linux" src="https://img.shields.io/travis/com/conda-forge/zlib-feedstock/master.svg?label=Linux">
-      </a>
-    </td>
-  </tr>
+<table>
     
   <tr>
     <td>Azure</td>
     <td>
       <details>
         <summary>
-          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=2250&branchName=master">
-            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/zlib-feedstock?branchName=master">
+          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=2250&branchName=main">
+            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/zlib-feedstock?branchName=main">
           </a>
         </summary>
         <table>
@@ -44,43 +37,43 @@ Current build status
           <tbody><tr>
               <td>linux_64</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=2250&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/zlib-feedstock?branchName=master&jobName=linux&configuration=linux_64_" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=2250&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/zlib-feedstock?branchName=main&jobName=linux&configuration=linux_64_" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>linux_aarch64</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=2250&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/zlib-feedstock?branchName=master&jobName=linux&configuration=linux_aarch64_" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=2250&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/zlib-feedstock?branchName=main&jobName=linux&configuration=linux_aarch64_" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>linux_ppc64le</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=2250&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/zlib-feedstock?branchName=master&jobName=linux&configuration=linux_ppc64le_" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=2250&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/zlib-feedstock?branchName=main&jobName=linux&configuration=linux_ppc64le_" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>osx_64</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=2250&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/zlib-feedstock?branchName=master&jobName=osx&configuration=osx_64_" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=2250&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/zlib-feedstock?branchName=main&jobName=osx&configuration=osx_64_" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>osx_arm64</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=2250&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/zlib-feedstock?branchName=master&jobName=osx&configuration=osx_arm64_" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=2250&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/zlib-feedstock?branchName=main&jobName=osx&configuration=osx_arm64_" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>win_64</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=2250&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/zlib-feedstock?branchName=master&jobName=win&configuration=win_64_" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=2250&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/zlib-feedstock?branchName=main&jobName=win&configuration=win_64_" alt="variant">
                 </a>
               </td>
             </tr>
@@ -97,7 +90,6 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libzlib-green.svg)](https://anaconda.org/conda-forge/libzlib) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libzlib.svg)](https://anaconda.org/conda-forge/libzlib) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libzlib.svg)](https://anaconda.org/conda-forge/libzlib) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libzlib.svg)](https://anaconda.org/conda-forge/libzlib) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-libzlib--wapi-green.svg)](https://anaconda.org/conda-forge/libzlib-wapi) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libzlib-wapi.svg)](https://anaconda.org/conda-forge/libzlib-wapi) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libzlib-wapi.svg)](https://anaconda.org/conda-forge/libzlib-wapi) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libzlib-wapi.svg)](https://anaconda.org/conda-forge/libzlib-wapi) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-zlib-green.svg)](https://anaconda.org/conda-forge/zlib) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/zlib.svg)](https://anaconda.org/conda-forge/zlib) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/zlib.svg)](https://anaconda.org/conda-forge/zlib) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/zlib.svg)](https://anaconda.org/conda-forge/zlib) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-zlib--wapi-green.svg)](https://anaconda.org/conda-forge/zlib-wapi) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/zlib-wapi.svg)](https://anaconda.org/conda-forge/zlib-wapi) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/zlib-wapi.svg)](https://anaconda.org/conda-forge/zlib-wapi) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/zlib-wapi.svg)](https://anaconda.org/conda-forge/zlib-wapi) |
 
@@ -111,41 +103,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `libzlib, libzlib-wapi, zlib, zlib-wapi` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `libzlib, zlib` can be installed with:
 
 ```
-conda install libzlib libzlib-wapi zlib zlib-wapi
+conda install libzlib zlib
 ```
 
-or with `mamba`:
-
-```
-mamba install libzlib libzlib-wapi zlib zlib-wapi
-```
-
-It is possible to list all of the versions of `libzlib` available on your platform with `conda`:
+It is possible to list all of the versions of `libzlib` available on your platform with:
 
 ```
 conda search libzlib --channel conda-forge
-```
-
-or with `mamba`:
-
-```
-mamba search libzlib --channel conda-forge
-```
-
-Alternatively, `mamba repoquery` may provide more information:
-
-```
-# Search all versions available on your platform:
-mamba repoquery search libzlib --channel conda-forge
-
-# List packages depending on `libzlib`:
-mamba repoquery whoneeds libzlib --channel conda-forge
-
-# List dependencies of `libzlib`:
-mamba repoquery depends libzlib --channel conda-forge
 ```
 
 
