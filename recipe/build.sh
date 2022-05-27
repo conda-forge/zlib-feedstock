@@ -3,6 +3,10 @@
 export CFLAGS="${CFLAGS} -fPIC"
 export CXXFLAGS="${CXXFLAGS} -fPIC"
 
+if [[ "$target_platform" == linux-* ]]; then
+  export CC=$GCC
+fi
+
 ./configure --prefix=${PREFIX}  \
     --shared || (cat configure.log && false)
     
