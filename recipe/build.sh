@@ -7,6 +7,8 @@ if [[ "$target_platform" == linux-* ]]; then
   export CC=$GCC
 fi
 
+export cc=$CC
+
 ./configure --prefix=${PREFIX}  \
     --shared || (cat configure.log && false)
     
