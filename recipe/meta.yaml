@@ -49,7 +49,6 @@ outputs:
         - if not exist %PREFIX%\zlib.dll exit 1  # [win]
 
   - name: libzlib-wapi
-    script: bld_winapi.bat   # [win]
     build:
       skip: True   # [not win]
       run_exports:
@@ -62,6 +61,8 @@ outputs:
       run_constrained:
         - zlib {{ version }} *_{{ build_num }}
         - zlib-wapi {{ version }} *_{{ build_num }}
+    files:
+      - Library/bin/zlibwapi.dll   # [win]
     test:
       commands:
         - if not exist "%LIBRARY_BIN%\zlibwapi.dll" exit 1   # [win]
@@ -112,9 +113,8 @@ outputs:
         - {{ pin_subpackage('libzlib-wapi', exact=True) }}
         - {{ pin_subpackage('zlib', exact=True) }}
     files:
-      - Library/include        # [win]
-      - Library/share          # [win]
-      - Library/lib            # [win]
+      - Library/lib/zlibwapi.lib   # [win]
+      - Library/include/zlib.h         # [win]
     test:
       commands:
         - if not exist %LIBRARY_LIB%\zlibwapi.lib exit 1   # [win]
