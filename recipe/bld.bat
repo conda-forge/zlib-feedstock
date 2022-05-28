@@ -26,6 +26,7 @@ if errorlevel 1 exit 1
 copy "zlib.dll" "%LIBRARY_BIN%\zlibwapi.dll" || exit 1
 copy "zlib.lib" "%LIBRARY_LIB%\zlibwapi.lib" || exit 1
 
+del /f /q CMakeCache.txt
 
 :: Now build regular zlib.
 :: Configure.
