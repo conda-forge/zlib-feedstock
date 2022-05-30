@@ -30,7 +30,7 @@ jobs:
         start /wait "" %BUILD_ARTIFACTSTAGINGDIRECTORY%\\Miniforge.exe /InstallationType=JustMe /RegisterPython=0 /S /D=C:\\Miniforge
       displayName: Install Miniforge
 
-    - powershell: Write-Host "##vso[task.prependpath]$env:C:\\Miniforge"
+    - powershell: Write-Host "##vso[task.prependpath]$env:C:\\Miniforge\\Scripts"
       displayName: Add conda to PATH
 
     - script: |
