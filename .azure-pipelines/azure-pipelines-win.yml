@@ -21,10 +21,10 @@ jobs:
       inputs:
         scriptSource: inline
         script: |
-         import urllib.request
-         url = 'https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Windows-x86_64.exe'
-         path = r"$(Build.ArtifactStagingDirectory)/Miniforge.exe"
-         urllib.request.urlretrieve(url, path)
+          import urllib.request
+          url = 'https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Windows-x86_64.exe'
+          path = r"$(Build.ArtifactStagingDirectory)/Miniforge.exe"
+          urllib.request.urlretrieve(url, path)
 
     - script: |
         start /wait "" %BUILD_ARTIFACTSTAGINGDIRECTORY%\Miniforge.exe /InstallationType=JustMe /RegisterPython=0 /S /D=C:\Miniforge
@@ -34,8 +34,6 @@ jobs:
       displayName: Add conda to PATH
 
     - script: |
-        dir "C:\Miniforge"
-        echo %PATH%
         call activate base
         mamba.exe install 'python=3.9' conda-build conda pip boa 'conda-forge-ci-setup=3' -c conda-forge --strict-channel-priority --yes
       displayName: Install conda-build
@@ -55,14 +53,17 @@ jobs:
         call activate base
         run_conda_forge_build_setup
       displayName: conda-forge build setup
+    
 
     - script: |
         call activate base
+        if EXIST LICENSE.txt (
+          copy LICENSE.txt "recipe\\recipe-scripts-license.txt"
+        )
         conda.exe mambabuild "recipe" -m .ci_support\%CONFIG%.yaml --suppress-variables
       displayName: Build recipe
       env:
         PYTHONUNBUFFERED: 1
-      condition: not(contains(variables['CONFIG'], 'vs2008'))
     - script: |
         set "FEEDSTOCK_NAME=%BUILD_REPOSITORY_NAME:*/=%"
         call activate base
