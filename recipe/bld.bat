@@ -12,6 +12,9 @@ cmake -G "NMake Makefiles" ^
       %SRC_DIR%
 if errorlevel 1 exit 1
 
+:: For logging.
+type CMakeCache.txt
+
 :: Build.
 cmake --build %SRC_DIR% --config Release
 if errorlevel 1 exit 1
