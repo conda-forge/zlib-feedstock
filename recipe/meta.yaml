@@ -118,9 +118,15 @@ outputs:
       - Library/lib/zlibwapi.lib   # [win]
       - Library/include/zlib.h         # [win]
     test:
+      requires:
+        - {{ compiler('c') }}
+      files:
+        - print_compile_flags.bat
+        - print_compile_flags.c
       commands:
         - if not exist %LIBRARY_LIB%\zlibwapi.lib exit 1   # [win]
         - if not exist %LIBRARY_INC%\zlib.h exit 1         # [win]
+        - print_compile_flags.bat || exit 1  # [win]
 
 about:
   home: http://zlib.net/
