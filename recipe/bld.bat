@@ -2,6 +2,10 @@ set LIB=%LIBRARY_LIB%;%LIB%
 set LIBPATH=%LIBRARY_LIB%;%LIBPATH%
 set INCLUDE=%LIBRARY_INC%;%INCLUDE%;%RECIPE_DIR%
 
+echo if( DEFINED ZLIB_OUTPUT_NAME ) >> "CMakeLists.txt"
+echo     set_target_properties(zlib PROPERTIES OUTPUT_NAME ${ZLIB_OUTPUT_NAME}) >> "CMakeLists.txt"
+echo endif() >> "CMakeLists.txt"
+
 :: Configure.
 :: -DZLIB_WINAPI switches to WINAPI calling convention. See Q7 in DLL_FAQ.txt.
 cmake -G "NMake Makefiles" ^
@@ -9,6 +13,7 @@ cmake -G "NMake Makefiles" ^
       -D CMAKE_PREFIX_PATH=%LIBRARY_PREFIX% ^
       -D CMAKE_INSTALL_PREFIX:PATH=%LIBRARY_PREFIX% ^
       -D CMAKE_C_FLAGS="-DZLIB_WINAPI " ^
+      -D ZLIB_OUTPUT_NAME="zlibwapi" ^
       %SRC_DIR%
 if errorlevel 1 exit 1
 
@@ -23,11 +28,11 @@ if errorlevel 1 exit 1
 ctest
 if errorlevel 1 exit 1
 
-:: Copy built zlib.dll with the same name provided by http://www.winimage.com/zLibDll/
+:: Copy built zlibwapi.dll with the same name provided by http://www.winimage.com/zLibDll/
 :: This is needed for example for cuDNN
 :: https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html#install-zlib-windows
-copy "zlib.dll" "%LIBRARY_BIN%\zlibwapi.dll" || exit 1
-copy "zlib.lib" "%LIBRARY_LIB%\zlibwapi.lib" || exit 1
+copy "zlibwapi.dll" "%LIBRARY_BIN%\zlibwapi.dll" || exit 1
+copy "zlibwapi.lib" "%LIBRARY_LIB%\zlibwapi.lib" || exit 1
 
 del /f /q CMakeCache.txt
 
