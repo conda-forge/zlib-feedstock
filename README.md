@@ -97,6 +97,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libzlib-green.svg)](https://anaconda.org/conda-forge/libzlib) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libzlib.svg)](https://anaconda.org/conda-forge/libzlib) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libzlib.svg)](https://anaconda.org/conda-forge/libzlib) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libzlib.svg)](https://anaconda.org/conda-forge/libzlib) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libzlib--wapi-green.svg)](https://anaconda.org/conda-forge/libzlib-wapi) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libzlib-wapi.svg)](https://anaconda.org/conda-forge/libzlib-wapi) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libzlib-wapi.svg)](https://anaconda.org/conda-forge/libzlib-wapi) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libzlib-wapi.svg)](https://anaconda.org/conda-forge/libzlib-wapi) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-zlib-green.svg)](https://anaconda.org/conda-forge/zlib) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/zlib.svg)](https://anaconda.org/conda-forge/zlib) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/zlib.svg)](https://anaconda.org/conda-forge/zlib) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/zlib.svg)](https://anaconda.org/conda-forge/zlib) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-zlib--wapi-green.svg)](https://anaconda.org/conda-forge/zlib-wapi) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/zlib-wapi.svg)](https://anaconda.org/conda-forge/zlib-wapi) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/zlib-wapi.svg)](https://anaconda.org/conda-forge/zlib-wapi) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/zlib-wapi.svg)](https://anaconda.org/conda-forge/zlib-wapi) |
 
@@ -110,16 +111,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `libzlib, zlib` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `libzlib, libzlib-wapi, zlib, zlib-wapi` can be installed with `conda`:
 
 ```
-conda install libzlib zlib
+conda install libzlib libzlib-wapi zlib zlib-wapi
 ```
 
 or with `mamba`:
 
 ```
-mamba install libzlib zlib
+mamba install libzlib libzlib-wapi zlib zlib-wapi
 ```
 
 It is possible to list all of the versions of `libzlib` available on your platform with `conda`:
