@@ -104,7 +104,7 @@ outputs:
         - if not exist %LIBRARY_LIB%\zlibstatic.lib exit 1  # [win]
         - if not exist %LIBRARY_LIB%\zlib.lib exit 1        # [win]
         - if not exist %LIBRARY_INC%\zlib.h exit 1          # [win]
-        - print_compile_flags.bat || exit 1  # [win]
+        - call print_compile_flags.bat  # [win]
 
   - name: zlib-wapi
     build:
@@ -132,7 +132,7 @@ outputs:
       commands:
         - if not exist %LIBRARY_LIB%\zlibwapi.lib exit 1   # [win]
         - if not exist %LIBRARY_INC%\zlib.h exit 1         # [win]
-        - print_compile_flags.bat "wapi" || exit 1  # [win]
+        - call print_compile_flags.bat "wapi"  # [win]
 
 about:
   home: http://zlib.net/
