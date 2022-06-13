@@ -7,11 +7,11 @@ int main()
             ZLIB_VERSION, ZLIB_VERNUM, zlibCompileFlags());
 
 #ifdef ZLIB_WINAPI
-    if (zlibCompileFlags() & (1 << 10) == 0) {
+    if (zlibCompileFlags() < (1 << 10)) {
         exit(1);
     }
 #else
-    if (zlibCompileFlags() & (1 << 10) != 0) {
+    if (zlibCompileFlags() >= (1 << 10)) {
         exit(1);
     }
 #endif
