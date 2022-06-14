@@ -8,11 +8,12 @@ int main()
 
 #ifdef ZLIB_WINAPI
     if ((zlibCompileFlags() & (1 << 10)) == 0) {
-        exit(1);
+        return 1;
     }
 #else
     if ((zlibCompileFlags() & (1 << 10)) != 0) {
-        exit(1);
+        return 1;
     }
 #endif
+    return 0;
 }
