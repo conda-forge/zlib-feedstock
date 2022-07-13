@@ -1,5 +1,5 @@
 {% set version = "1.2.12" %}
-{% set build_num = 1 %}
+{% set build_num = 2 %}
 
 package:
   name: zlib-split
@@ -91,6 +91,7 @@ outputs:
       - Library/include        # [win]
       - Library/share          # [win]
       - Library/lib            # [win]
+      - Library/lib/pkgconfig  # [win]
     test:
       requires:
         - {{ compiler('c') }}
@@ -101,9 +102,10 @@ outputs:
         - test -f ${PREFIX}/lib/libz.a            # [unix]
         - test -f ${PREFIX}/lib/libz${SHLIB_EXT}  # [unix]
         - test -f ${PREFIX}/include/zlib.h        # [unix]
-        - if not exist %LIBRARY_LIB%\zlibstatic.lib exit 1  # [win]
-        - if not exist %LIBRARY_LIB%\zlib.lib exit 1        # [win]
-        - if not exist %LIBRARY_INC%\zlib.h exit 1          # [win]
+        - if not exist %LIBRARY_LIB%\zlibstatic.lib exit 1     # [win]
+        - if not exist %LIBRARY_LIB%\zlib.lib exit 1           # [win]
+        - if not exist %LIBRARY_LIB%\pkgconfig\zlib.pc exit 1  # [win]
+        - if not exist %LIBRARY_INC%\zlib.h exit 1             # [win]
         - call test_compile_flags.bat  # [win]
 
   - name: zlib-wapi
