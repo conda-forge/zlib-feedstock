@@ -22,6 +22,7 @@ make install
 
 # Remove man files.
 rm -rf $PREFIX/share
-
-# Copy license file to the source directory so conda-build can find it.
-cp $RECIPE_DIR/license.txt $SRC_DIR/license.txt
+# Remove static libraries
+# There is no easy way to disable them in the configuration
+# https://github.com/madler/zlib/blob/master/configure#L449
+rm -f "$PREFIX/lib/libz.a"
