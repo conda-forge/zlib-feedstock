@@ -62,8 +62,8 @@ copy %LIBRARY_LIB%\zlib.lib %LIBRARY_LIB%\z.lib || exit 1
 :: Qt in particular goes looking for this one (as of 4.8.7).
 copy %LIBRARY_LIB%\zlib.lib %LIBRARY_LIB%\zdll.lib || exit 1
 
-:: Copy license file to the source directory so conda-build can find it.
-copy %RECIPE_DIR%\license.txt %SRC_DIR%\license.txt || exit 1
+:: Remove the statically installed library
+del /f %LIBRARY_LIB%\zlibstatic.lib
 
 :: python>=3.10 depend on this being at %PREFIX%
 copy %LIBRARY_BIN%\zlib.dll %PREFIX%\zlib.dll || exit 1
