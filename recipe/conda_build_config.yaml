@@ -1,2 +1,5 @@
 c_compiler:   # [osx]
   - clang_bootstrap  # [osx]
+
+channel_sources:                        # [win and arm64]
+  - isuruf/label/win_arm64,conda-forge  # [win and arm64]

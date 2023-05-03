@@ -1,0 +1,10 @@
+c_compiler:
+- vs2022
+channel_sources:
+- isuruf/label/win_arm64,conda-forge
+channel_targets:
+- conda-forge main
+target_platform:
+- win-arm64
+vc:
+- '14'
