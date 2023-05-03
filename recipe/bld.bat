@@ -5,6 +5,7 @@ set INCLUDE=%LIBRARY_INC%;%INCLUDE%;%RECIPE_DIR%
 echo if( DEFINED ZLIB_OUTPUT_NAME ) >> "CMakeLists.txt"
 echo     set_target_properties(zlib PROPERTIES OUTPUT_NAME ${ZLIB_OUTPUT_NAME}) >> "CMakeLists.txt"
 echo endif() >> "CMakeLists.txt"
+echo message("CMAKE_CROSS_COMPILING: ${CMAKE_CROSSCOMPILING}") >> "CMakeLists.txt"
 
 :: Configure.
 :: -DZLIB_WINAPI switches to WINAPI calling convention. See Q7 in DLL_FAQ.txt.
@@ -14,7 +15,7 @@ cmake -G "NMake Makefiles" ^
       -D CMAKE_INSTALL_PREFIX:PATH=%LIBRARY_PREFIX% ^
       -D CMAKE_C_FLAGS="-DZLIB_WINAPI " ^
       -D ZLIB_OUTPUT_NAME="zlibwapi" ^
-      %SRC_DIR%
+      %CMAKE_ARGS% %SRC_DIR%
 if errorlevel 1 exit 1
 
 :: For logging.
@@ -25,8 +26,11 @@ cmake --build %SRC_DIR% --config Release
 if errorlevel 1 exit 1
 
 :: Test.
-ctest
-if errorlevel 1 exit 1
+:: TODO: check if there exists a emulator
+if NOT "%CONDA_BUILD_CROSS_COMPILATION%" == 1 (
+  ctest
+  if errorlevel 1 exit 1
+)
 
 :: Copy built zlibwapi.dll with the same name provided by http://www.winimage.com/zLibDll/
 :: This is needed for example for cuDNN
@@ -53,8 +57,10 @@ cmake --build %SRC_DIR% --target INSTALL --config Release --clean-first
 if errorlevel 1 exit 1
 
 :: Test.
-ctest
-if errorlevel 1 exit 1
+if NOT "%CONDA_BUILD_CROSS_COMPILATION%" == 1 (
+  ctest
+  if errorlevel 1 exit 1
+)
 
 :: Some OSS libraries are happier if z.lib exists, even though it's not typical on Windows.
 copy %LIBRARY_LIB%\zlib.lib %LIBRARY_LIB%\z.lib || exit 1
