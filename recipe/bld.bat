@@ -29,7 +29,7 @@ if errorlevel 1 exit 1
 
 :: Test.
 :: TODO: check if there exists a emulator
-if NOT "%CONDA_BUILD_CROSS_COMPILATION%" == 1 (
+if NOT "%CONDA_BUILD_CROSS_COMPILATION%" == "1" (
   ctest
   if errorlevel 1 exit 1
 )
@@ -59,7 +59,7 @@ cmake --build %SRC_DIR% --target INSTALL --config Release --clean-first
 if errorlevel 1 exit 1
 
 :: Test.
-if NOT "%CONDA_BUILD_CROSS_COMPILATION%" == 1 (
+if NOT "%CONDA_BUILD_CROSS_COMPILATION%" == "1" (
   ctest
   if errorlevel 1 exit 1
 )
