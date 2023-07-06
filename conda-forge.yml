@@ -3,8 +3,10 @@ conda_forge_output_validation: true
 build_platform:
   osx_arm64: osx_64
   linux_ppc64le: linux_64
+  win_arm64: win_64
 github:
   branch_name: main
   tooling_branch_name: main
 conda_build:
   pkg_format: '2'
+test: native_and_emulated
