@@ -11,6 +11,7 @@ source:
     - https://gnupg.org/ftp/gcrypt/zlib/zlib-{{ version }}.tar.gz
   sha256: ff0ba4c292013dbc27530b3a81e1f9a813cd39de01ca5e0f8bf355702efa593e
   patches:
+    # This patch is ported from https://github.com/madler/zlib/pull/843 and can be dropped after the availability of 1.3.1 patch release
     - CVE-2023-45853.patch
 
 build:
