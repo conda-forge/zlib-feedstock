@@ -1,5 +1,5 @@
 {% set version = "1.2.13" %}
-{% set build_num = 5 %}
+{% set build_num = 6 %}
 
 package:
   name: zlib-split
@@ -29,7 +29,7 @@ outputs:
       run_exports:
         # mostly OK, but some scary symbol removal.  Let's try for trusting them.
         #  https://abi-laboratory.pro/tracker/timeline/zlib/
-        - {{ pin_subpackage('libzlib', max_pin='x.x') }}
+        - {{ pin_subpackage('libzlib', max_pin='x') }}
     requirements:
       build:
         - {{ compiler('c') }}
@@ -54,7 +54,7 @@ outputs:
     build:
       skip: true  # [not win]
       run_exports:
-        - {{ pin_subpackage('libzlib-wapi', max_pin='x.x') }}
+        - {{ pin_subpackage('libzlib-wapi', max_pin='x') }}
     requirements:
       build:
         - {{ compiler('c') }}
@@ -74,7 +74,7 @@ outputs:
       run_exports:
         # mostly OK, but some scary symbol removal.  Let's try for trusting them.
         #  https://abi-laboratory.pro/tracker/timeline/zlib/
-        - {{ pin_subpackage('libzlib', max_pin='x.x') }}
+        - {{ pin_subpackage('libzlib', max_pin='x') }}
     requirements:
       build:
         - {{ compiler('c') }}
@@ -116,7 +116,7 @@ outputs:
     build:
       skip: true  # [not win]
       run_exports:
-        - {{ pin_subpackage('libzlib-wapi', max_pin='x.x') }}
+        - {{ pin_subpackage('libzlib-wapi', max_pin='x') }}
     requirements:
       build:
         - {{ compiler('c') }}
