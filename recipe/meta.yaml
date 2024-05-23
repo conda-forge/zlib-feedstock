@@ -19,6 +19,7 @@ requirements:
     - cmake                 # [win]
     # compiler on osx depends on zlib itself. Use the bootstrap compiler instead on osx
     - {{ compiler('c') }}
+    - {{ stdlib('c') }}
     - make                  # [unix]
   run:
 
@@ -30,6 +31,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+        - {{ stdlib('c') }}
       host:
       run:
       run_constrained:
@@ -55,6 +57,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+        - {{ stdlib('c') }}
       host:
       run:
       run_constrained:
@@ -73,6 +76,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+        - {{ stdlib('c') }}
       host:
         - {{ pin_subpackage('libzlib', exact=True) }}
       run:
@@ -115,6 +119,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+        - {{ stdlib('c') }}
       host:
         - {{ pin_subpackage('libzlib-wapi', exact=True) }}
         - {{ pin_subpackage('zlib', exact=True) }}
