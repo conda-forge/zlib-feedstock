@@ -1,24 +1,30 @@
 #!/bin/bash
+set -ex
 
 export CFLAGS="${CFLAGS} -fPIC"
 export CXXFLAGS="${CXXFLAGS} -fPIC"
 
-if [[ "$target_platform" == linux-* ]]; then
-  export CC=$GCC
-fi
+# upstream CMake build has no toggle to _only_ switch off man pages;
+# install them in a location that conda-build won't pick up
+mkdir -p $RECIPE_DIR/ignored
 
-export cc=$CC
+mkdir build
+cd build
 
-./configure --prefix=${PREFIX}  \
-    --shared || (cat configure.log && false)
-    
-cat configure.log
+cmake -G Ninja \
+    ${CMAKE_ARGS} \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_PREFIX_PATH=$PREFIX \
+    -DCMAKE_INSTALL_PREFIX=$PREFIX \
+    -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
+    -DINSTALL_MAN_DIR=$RECIPE_DIR/ignored \
+    -DINSTALL_PKGCONFIG_DIR=$PREFIX/lib/pkgconfig \
+    ..
 
-make -j${CPU_COUNT} ${VERBOSE_AT}
+cmake --build .
+
 if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" && "${CROSSCOMPILING_EMULATOR}" == "" ]]; then
-    make check
+    ctest --progress --output-on-failure
 fi
-make install
 
-# Remove man files.
-rm -rf $PREFIX/share
+cmake --install .
