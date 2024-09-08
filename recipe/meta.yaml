@@ -17,7 +17,6 @@ build:
 requirements:
   build:
     - cmake                 # [win]
-    # compiler on osx depends on zlib itself. Use the bootstrap compiler instead on osx
     - {{ compiler('c') }}
     - {{ stdlib('c') }}
     - make                  # [unix]
