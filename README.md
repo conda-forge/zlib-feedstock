@@ -3,19 +3,14 @@ About zlib-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/zlib-feedstock/blob/main/LICENSE.txt)
 
-Home: http://zlib.net/
+
 
 Package license: Zlib
 
 Summary: Massively spiffy yet delicately unobtrusive compression library
 
-Development: https://github.com/madler/zlib
-
-Documentation: http://zlib.net/manual.html
-
 zlib is designed to be a free, general-purpose, lossless data-compression
 library for use on virtually any computer hardware and operating system.
-
 
 Current build status
 ====================
