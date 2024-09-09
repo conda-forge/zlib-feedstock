@@ -71,17 +71,17 @@ outputs:
           then: lib/libz.dylib
         - if: unix
           then:
-            - include
-            - lib/pkgconfig
+            - include/
+            - lib/pkgconfig/
             - lib/libz.a
           else:
-            - Library/include
-            - Library/share
+            - Library/include/
+            - Library/share/
             - Library/lib/zlib.lib
             - Library/lib/zdll.lib
             - Library/lib/z.lib
             - Library/lib/zlibstatic.lib
-            - Library/lib/pkgconfig
+            - Library/lib/pkgconfig/
     requirements:
       build:
         - ${{ compiler('c') }}
