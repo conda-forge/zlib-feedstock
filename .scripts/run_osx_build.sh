@@ -81,6 +81,9 @@ else
         EXTRA_CB_OPTIONS="${EXTRA_CB_OPTIONS:-} --no-test"
     fi
 
+    # build portion of https://github.com/conda-forge/conda-smithy/issues/2057
+    EXTRA_CB_OPTIONS="${EXTRA_CB_OPTIONS:-} --experimental"
+
     rattler-build build --recipe ./recipe \
         -m ./.ci_support/${CONFIG}.yaml \
         --output-dir ${MINIFORGE_HOME}/conda-bld ${EXTRA_CB_OPTIONS:-} \

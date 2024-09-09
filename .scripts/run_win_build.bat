@@ -70,6 +70,9 @@ if NOT [%flow_run_id%] == [] (
         set "EXTRA_CB_OPTIONS=%EXTRA_CB_OPTIONS% --extra-meta flow_run_id=%flow_run_id% --extra-meta remote_url=%remote_url% --extra-meta sha=%sha%"
 )
 
+:: build portion of https://github.com/conda-forge/conda-smithy/issues/2057
+set "EXTRA_CB_OPTIONS=%EXTRA_CB_OPTIONS% --experimental"
+
 call :end_group
 
 :: Build the recipe
