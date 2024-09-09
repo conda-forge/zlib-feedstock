@@ -52,6 +52,8 @@ if [[ "${HOST_PLATFORM}" != "${BUILD_PLATFORM}" ]] && [[ "${HOST_PLATFORM}" != l
     EXTRA_CB_OPTIONS="${EXTRA_CB_OPTIONS:-} --no-test"
 fi
 
+# build portion of https://github.com/conda-forge/conda-smithy/issues/2057
+EXTRA_CB_OPTIONS="${EXTRA_CB_OPTIONS:-} --experimental"
 
 ( endgroup "Configuring conda" ) 2> /dev/null
 
