@@ -11,7 +11,7 @@ mkdir -p $RECIPE_DIR/ignored
 mkdir build
 cd build
 
-if [[ ${cross_target_platform} == emscripten-* ]]; then
+if [[ ${CROSS_TARGET_PLATFORM} == emscripten-* ]]; then
     # derived from zlib-recipe in emscripten-forge, see
     # https://github.com/emscripten-forge/recipes/blob/989e8506ffaa3a24dccd49733c4454fadaf34b02/recipes/recipes_emscripten/zlib
     export CMAKE_ARGS="$CMAKE_ARGS -DZLIB_BUILD_EXAMPLES=OFF"
