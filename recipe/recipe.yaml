@@ -20,8 +20,12 @@ cache:
     build:
       - cmake
       - ninja
-      - ${{ compiler('c') }}
-      - ${{ stdlib('c') }}
+      - if: cross_target_platform == "emscripten-wasm32"
+        then:
+          - emscripten
+        else:
+          - ${{ compiler('c') }}
+          - ${{ stdlib('c') }}
   build:
     script:
       # rattler-build figures out the {.sh,.bat} extensions
@@ -42,8 +46,12 @@ outputs:
             - zlib.dll
     requirements:
       build:
-        - ${{ compiler('c') }}
-        - ${{ stdlib('c') }}
+        - if: cross_target_platform == "emscripten-wasm32"
+          then:
+            - emscripten
+          else:
+            - ${{ compiler('c') }}
+            - ${{ stdlib('c') }}
       host:
       run:
       run_exports:
@@ -93,8 +101,12 @@ outputs:
             - bin/zlib.js
     requirements:
       build:
-        - ${{ compiler('c') }}
-        - ${{ stdlib('c') }}
+        - if: cross_target_platform == "emscripten-wasm32"
+          then:
+            - emscripten
+          else:
+            - ${{ compiler('c') }}
+            - ${{ stdlib('c') }}
       host:
         - ${{ pin_subpackage('libzlib', exact=True) }}
       run:
