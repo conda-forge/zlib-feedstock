@@ -12,6 +12,8 @@ channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
+cross_target_platform:
+- emscripten-wasm32
 docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 target_platform:

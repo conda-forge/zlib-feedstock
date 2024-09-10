@@ -30,10 +30,17 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64</td>
+              <td>linux_64_cross_target_platformemscripten-wasm32</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=2250&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/zlib-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/zlib-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cross_target_platformemscripten-wasm32" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_64_cross_target_platformlinux-64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=2250&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/zlib-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cross_target_platformlinux-64" alt="variant">
                 </a>
               </td>
             </tr><tr>
