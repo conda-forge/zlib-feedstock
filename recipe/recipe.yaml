@@ -27,6 +27,9 @@ cache:
           - ${{ compiler('c') }}
           - ${{ stdlib('c') }}
   build:
+    variant:
+      # see https://github.com/prefix-dev/rattler-build/issues/1056
+      use_keys: ["cross_target_platform"]
     script:
       # rattler-build figures out the {.sh,.bat} extensions
       - build_global
