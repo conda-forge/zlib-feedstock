@@ -29,7 +29,7 @@ cache:
   build:
     script:
       # rattler-build figures out the {.sh,.bat} extensions
-      - build_global
+      file: build_global
       # see https://github.com/prefix-dev/rattler-build/issues/1056
       env:
         CROSS_TARGET_PLATFORM: ${{ cross_target_platform }}
