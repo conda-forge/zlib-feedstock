@@ -1,3 +1,6 @@
 # compiler on osx depends on zlib itself -> use the bootstrap compiler
 c_compiler:             # [osx]
   - clang_bootstrap     # [osx]
+# work-around for https://github.com/conda-forge/vc-feedstock/issues/83
+c_compiler_version:     # [win and arm64]
+  - 19.40               # [win and arm64]
