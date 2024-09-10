@@ -51,7 +51,12 @@ outputs:
       run_constraints:
         - zlib ${{ version }} *_${{ build_num }}
     tests:
-      - script:
+      - requirements:
+          build:
+            - if: cross_target_platform == "emscripten-wasm32"
+              then:
+                - nodejs
+        script:
         - if: unix
           then:
             - test ! -f ${PREFIX}/lib/libz.a
@@ -82,6 +87,10 @@ outputs:
             - Library/lib/z.lib
             - Library/lib/zlibstatic.lib
             - Library/lib/pkgconfig/
+        - if: cross_target_platform == "emscripten-wasm32"
+          then:
+            - bin/libz.js
+            - bin/zlib.js
     requirements:
       build:
         - ${{ compiler('c') }}
@@ -98,6 +107,10 @@ outputs:
             - test_compile_flags.bat
             - test_compile_flags.c
         requirements:
+          build:
+            - if: cross_target_platform == "emscripten-wasm32"
+              then:
+                - nodejs
           run:
             - ${{ compiler('c') }}
         script:
@@ -113,6 +126,9 @@ outputs:
             - if not exist %LIBRARY_INC%\zlib.h exit 1
             - if exist %LIBRARY_LIB%\zlibwapi.lib exit 1
             - call test_compile_flags.bat
+        - if: cross_target_platform == "emscripten-wasm32"
+          then:
+            - node $PREFIX/bin/zlib.js --version
 
   - package:
       name: libzlib-wapi
