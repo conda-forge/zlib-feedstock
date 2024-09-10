@@ -34,6 +34,11 @@ if NOT "%CONDA_BUILD_CROSS_COMPILATION%" == "1" (
   if errorlevel 1 exit 1
 )
 
+:: ensure folders exist before copying there (don't check
+:: for failure in case folder exists already; we don't care)
+mkdir %LIBRARY_BIN%
+mkdir %LIBRARY_LIB%
+
 :: Copy built zlibwapi.dll with the same name provided by http://www.winimage.com/zLibDll/
 :: This is needed for example for cuDNN
 :: https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html#install-zlib-windows
@@ -69,9 +74,6 @@ copy %LIBRARY_LIB%\zlib.lib %LIBRARY_LIB%\z.lib || exit 1
 
 :: Qt in particular goes looking for this one (as of 4.8.7).
 copy %LIBRARY_LIB%\zlib.lib %LIBRARY_LIB%\zdll.lib || exit 1
-
-:: Copy license file to the source directory so conda-build can find it.
-copy %RECIPE_DIR%\license.txt %SRC_DIR%\license.txt || exit 1
 
 :: python>=3.10 depend on this being at %PREFIX%
 copy %LIBRARY_BIN%\zlib.dll %PREFIX%\zlib.dll || exit 1

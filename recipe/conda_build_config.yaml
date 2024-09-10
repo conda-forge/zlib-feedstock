@@ -1,2 +1,14 @@
-c_compiler:   # [osx]
-  - clang_bootstrap  # [osx]
+# compiler on osx depends on zlib itself -> use the bootstrap compiler
+c_compiler:             # [osx]
+  - clang_bootstrap     # [osx]
+# work-around for https://github.com/conda-forge/vc-feedstock/issues/83
+c_compiler_version:     # [win and arm64]
+  - 19.40               # [win and arm64]
+
+cross_target_platform:  # [linux64]
+  - linux-64            # [linux64]
+  # no official upstream support yet; https://github.com/madler/zlib/issues/443
+  - emscripten-wasm32   # [linux64]
+
+channel_sources:
+  - conda-forge/label/llvm_rc,conda-forge
