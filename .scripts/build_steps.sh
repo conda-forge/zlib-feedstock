@@ -68,6 +68,7 @@ else
     rattler-build build --recipe "${RECIPE_ROOT}" \
      -m "${CI_SUPPORT}/${CONFIG}.yaml" \
      ${EXTRA_CB_OPTIONS:-} \
+     --target-platform "${HOST_PLATFORM}" \
      --extra-meta flow_run_id="${flow_run_id:-}" \
      --extra-meta remote_url="${remote_url:-}" \
      --extra-meta sha="${sha:-}"
