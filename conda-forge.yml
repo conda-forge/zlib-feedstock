@@ -6,7 +6,8 @@ build_platform:
 conda_build:
   pkg_format: '2'
 conda_build_tool: rattler-build
-conda_forge_output_validation: true
+# DEBUG: validation falls over lack of --experimental support
+conda_forge_output_validation: false
 github:
   branch_name: main
   tooling_branch_name: main
