@@ -16,7 +16,6 @@ Documentation: http://zlib.net/manual.html
 zlib is designed to be a free, general-purpose, lossless data-compression
 library for use on virtually any computer hardware and operating system.
 
-
 Current build status
 ====================
 
