@@ -54,6 +54,7 @@ outputs:
       - script:
           - if: unix
             then:
+              # libzlib on unix should only contain _versioned_ SOs
               - test ! -f ${PREFIX}/lib/libz.a
               - test ! -f ${PREFIX}/lib/libz${SHLIB_EXT}
               - test ! -f ${PREFIX}/include/zlib.h
@@ -100,17 +101,28 @@ outputs:
         requirements:
           run:
             - ${{ compiler('c') }}
+        package_contents:
+          include:
+            - zlib.h
+          # cannot use package_contents.lib tests on windows because:
+          # - also want to test static libraries
+          # - naming pattern is NOT `lib<foo>.so` (unix) & `foo.dll` (win)
+          files:
+            - if: unix
+              then:
+                - lib/libz.a
+                - lib/libz${SHLIB_EXT}
+                - lib/pkgconfig/zlib.pc
+              else:
+                # "import library" for zlib.dll
+                - Library\lib\zlib.lib
+                - Library\lib\zlibstatic.lib
+                - Library\lib\pkgconfig\zlib.pc
         script:
-          - if: unix
+          - if: win
             then:
-              - test -f ${PREFIX}/lib/libz.a
-              - test -f ${PREFIX}/lib/libz${SHLIB_EXT}
-              - test -f ${PREFIX}/include/zlib.h
-            else:
-              - if not exist %LIBRARY_LIB%\zlibstatic.lib exit 1
-              - if not exist %LIBRARY_LIB%\zlib.lib exit 1
-              - if not exist %LIBRARY_LIB%\pkgconfig\zlib.pc exit 1
-              - if not exist %LIBRARY_INC%\zlib.h exit 1
+              # can't do exclusion tests using package_contents yet, see
+              # https://github.com/prefix-dev/rattler-build/issues/915
               - if exist %LIBRARY_LIB%\zlibwapi.lib exit 1
               - call test_compile_flags.bat
 
@@ -133,8 +145,9 @@ outputs:
         - zlib ${{ version }} *_${{ build_num }}
         - zlib-wapi ${{ version }} *_${{ build_num }}
     tests:
-      - script:
-          - if not exist %LIBRARY_BIN%\zlibwapi.dll exit 1
+      - package_contents:
+          files:
+            - Library\bin\zlibwapi.dll
 
   - package:
       name: zlib-wapi
@@ -164,9 +177,11 @@ outputs:
         requirements:
           run:
             - ${{ compiler('c') }}
+        package_contents:
+          files:
+            - include\zlib.h
+            - Library\lib\zlibwapi.lib
         script:
-          - if not exist %LIBRARY_LIB%\zlibwapi.lib exit 1
-          - if not exist %LIBRARY_INC%\zlib.h exit 1
           - call test_compile_flags.bat "wapi"
 
 about:
