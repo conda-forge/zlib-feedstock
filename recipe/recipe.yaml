@@ -134,7 +134,7 @@ outputs:
         - zlib-wapi ${{ version }} *_${{ build_num }}
     tests:
       - script:
-        - "if not exist %LIBRARY_BIN%\\zlibwapi.dll exit 1"
+        - if not exist %LIBRARY_BIN%\zlibwapi.dll exit 1
 
   - package:
       name: zlib-wapi
