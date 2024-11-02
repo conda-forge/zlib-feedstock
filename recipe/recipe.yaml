@@ -94,14 +94,7 @@ outputs:
       run_exports:
         - ${{ pin_subpackage('libzlib', upper_bound='x') }}
     tests:
-      - files:
-          recipe:
-            - test_compile_flags.bat
-            - test_compile_flags.c
-        requirements:
-          run:
-            - ${{ compiler('c') }}
-        package_contents:
+      - package_contents:
           include:
             - zlib.h
           # cannot use package_contents.lib tests on windows because:
@@ -118,6 +111,13 @@ outputs:
                 - Library\lib\zlib.lib
                 - Library\lib\zlibstatic.lib
                 - Library\lib\pkgconfig\zlib.pc
+      - requirements:
+          run:
+            - ${{ compiler('c') }}
+        files:
+          recipe:
+            - test_compile_flags.bat
+            - test_compile_flags.c
         script:
           - if: win
             then:
@@ -170,17 +170,17 @@ outputs:
       run_exports:
         - ${{ pin_subpackage('libzlib-wapi', upper_bound='x') }}
     tests:
-      - files:
-          recipe:
-            - test_compile_flags.bat
-            - test_compile_flags.c
-        requirements:
-          run:
-            - ${{ compiler('c') }}
-        package_contents:
+      - package_contents:
           files:
             - include\zlib.h
             - Library\lib\zlibwapi.lib
+      - requirements:
+          run:
+            - ${{ compiler('c') }}
+        files:
+          recipe:
+            - test_compile_flags.bat
+            - test_compile_flags.c
         script:
           - call test_compile_flags.bat "wapi"
 
