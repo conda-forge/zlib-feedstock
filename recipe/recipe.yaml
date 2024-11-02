@@ -52,14 +52,14 @@ outputs:
         - zlib ${{ version }} *_${{ build_num }}
     tests:
       - script:
-        - if: unix
-          then:
-            - test ! -f ${PREFIX}/lib/libz.a
-            - test ! -f ${PREFIX}/lib/libz${SHLIB_EXT}
-            - test ! -f ${PREFIX}/include/zlib.h
-          else:
-            - if not exist %LIBRARY_BIN%\zlib.dll exit 1
-            - if not exist %PREFIX%\zlib.dll exit 1
+          - if: unix
+            then:
+              - test ! -f ${PREFIX}/lib/libz.a
+              - test ! -f ${PREFIX}/lib/libz${SHLIB_EXT}
+              - test ! -f ${PREFIX}/include/zlib.h
+            else:
+              - if not exist %LIBRARY_BIN%\zlib.dll exit 1
+              - if not exist %PREFIX%\zlib.dll exit 1
 
   - package:
       name: zlib
@@ -101,18 +101,18 @@ outputs:
           run:
             - ${{ compiler('c') }}
         script:
-        - if: unix
-          then:
-            - test -f ${PREFIX}/lib/libz.a
-            - test -f ${PREFIX}/lib/libz${SHLIB_EXT}
-            - test -f ${PREFIX}/include/zlib.h
-          else:
-            - if not exist %LIBRARY_LIB%\zlibstatic.lib exit 1
-            - if not exist %LIBRARY_LIB%\zlib.lib exit 1
-            - if not exist %LIBRARY_LIB%\pkgconfig\zlib.pc exit 1
-            - if not exist %LIBRARY_INC%\zlib.h exit 1
-            - if exist %LIBRARY_LIB%\zlibwapi.lib exit 1
-            - call test_compile_flags.bat
+          - if: unix
+            then:
+              - test -f ${PREFIX}/lib/libz.a
+              - test -f ${PREFIX}/lib/libz${SHLIB_EXT}
+              - test -f ${PREFIX}/include/zlib.h
+            else:
+              - if not exist %LIBRARY_LIB%\zlibstatic.lib exit 1
+              - if not exist %LIBRARY_LIB%\zlib.lib exit 1
+              - if not exist %LIBRARY_LIB%\pkgconfig\zlib.pc exit 1
+              - if not exist %LIBRARY_INC%\zlib.h exit 1
+              - if exist %LIBRARY_LIB%\zlibwapi.lib exit 1
+              - call test_compile_flags.bat
 
   - package:
       name: libzlib-wapi
@@ -134,7 +134,7 @@ outputs:
         - zlib-wapi ${{ version }} *_${{ build_num }}
     tests:
       - script:
-        - if not exist %LIBRARY_BIN%\zlibwapi.dll exit 1
+          - if not exist %LIBRARY_BIN%\zlibwapi.dll exit 1
 
   - package:
       name: zlib-wapi
