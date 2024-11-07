@@ -127,6 +127,8 @@ outputs:
               # https://github.com/prefix-dev/rattler-build/issues/915
               - if exist %LIBRARY_LIB%\zlibwapi.lib exit 1
               - call test_compile_flags.bat
+            else:
+              - echo "rattler insists on content for `script:`"
 
   - package:
       name: libzlib-wapi
