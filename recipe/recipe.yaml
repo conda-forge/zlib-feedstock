@@ -97,18 +97,20 @@ outputs:
       - package_contents:
           include:
             - zlib.h
-          # cannot use package_contents.lib tests on windows because:
-          # - also want to test static libraries
-          # - naming pattern is NOT `lib<foo>.so` (unix) & `foo.dll` (win)
+          lib:
+            # naming pattern doesn't match `lib<foo>.so` (unix) & `foo.dll` (win)
+            - if: unix
+              then:
+                - z
+              else:
+                - zlib
           files:
+            # static libraries & pkgconfig not covered by `lib:` tests
             - if: unix
               then:
                 - lib/libz.a
-                - lib/libz${SHLIB_EXT}
                 - lib/pkgconfig/zlib.pc
               else:
-                # "import library" for zlib.dll
-                - Library\lib\zlib.lib
                 - Library\lib\zlibstatic.lib
                 - Library\lib\pkgconfig\zlib.pc
       - requirements:
