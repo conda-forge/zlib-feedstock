@@ -1,3 +1,6 @@
 # compiler on osx depends on zlib itself -> use the bootstrap compiler
 c_compiler:             # [osx]
   - clang_bootstrap     # [osx]
+
+c_stdlib_version:  # [linux]
+  - "2.28"         # [linux]

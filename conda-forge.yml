@@ -9,4 +9,8 @@ github:
   tooling_branch_name: main
 conda_build:
   pkg_format: '2'
+os_version:
+  linux_64: alma8
+  linux_aarch64: alma8
+  linux_ppc64le: alma8
 test: native_and_emulated
