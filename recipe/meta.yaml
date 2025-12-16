@@ -13,6 +13,7 @@ source:
 
 build:
   number: {{ build_num }}
+  skip: true  # [not win]
 
 requirements:
   build:
