@@ -49,6 +49,7 @@ cmake -G "NMake Makefiles" ^
       -D CMAKE_PREFIX_PATH=%LIBRARY_PREFIX% ^
       -D CMAKE_INSTALL_PREFIX:PATH=%LIBRARY_PREFIX% ^
       -D INSTALL_PKGCONFIG_DIR=%LIBRARY_PREFIX%\lib\pkgconfig ^
+      -D BUILD_SHARED_LIBS=ON ^
       %SRC_DIR%
 if errorlevel 1 exit 1
 
