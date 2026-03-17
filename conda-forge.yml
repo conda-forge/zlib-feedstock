@@ -2,11 +2,14 @@ conda_forge_output_validation: true
 build_platform:
   linux_aarch64: linux_64
   linux_ppc64le: linux_64
-  osx_arm64: osx_64
-  win_arm64: win_64
+  osx_arm64: osx_arm64
+  win_arm64: win_arm64
 github:
   branch_name: main
   tooling_branch_name: main
 conda_build:
   pkg_format: '2'
 test: native_and_emulated
+provider:
+  osx_arm64: default
+  win_arm64: default
