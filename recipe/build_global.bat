@@ -34,6 +34,11 @@ if NOT "%CONDA_BUILD_CROSS_COMPILATION%" == "1" (
   if errorlevel 1 exit 1
 )
 
+:: ensure folders exist before copying there (don't check
+:: for failure in case folder exists already; we don't care)
+mkdir %LIBRARY_BIN%
+mkdir %LIBRARY_LIB%
+
 :: Copy built zlibwapi.dll with the same name provided by http://www.winimage.com/zLibDll/
 :: This is needed for example for cuDNN
 :: https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html#install-zlib-windows
