@@ -64,8 +64,11 @@ if NOT "%CONDA_BUILD_CROSS_COMPILATION%" == "1" (
   if errorlevel 1 exit 1
 )
 
-:: Some OSS libraries are happier if z.lib exists, even though it's not typical on Windows.
-copy %LIBRARY_LIB%\zlib.lib %LIBRARY_LIB%\z.lib || exit 1
+:: install zlib.lib for backwards compat
+copy %LIBRARY_LIB%\z.lib %LIBRARY_LIB%\zlib.lib || exit 1
+
+:: install zlibstatic.lib for backwards compat
+move %LIBRARY_LIB%\zs.lib %LIBRARY_LIB%\zlibstatic.lib || exit 1
 
 :: Qt in particular goes looking for this one (as of 4.8.7).
 copy %LIBRARY_LIB%\zlib.lib %LIBRARY_LIB%\zdll.lib || exit 1
