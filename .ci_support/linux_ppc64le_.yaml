@@ -1,5 +1,5 @@
 c_compiler:
-- gcc
+- gcc_bootstrap
 c_compiler_version:
 - '14'
 c_stdlib:
