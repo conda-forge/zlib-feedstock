@@ -48,6 +48,7 @@ cmake -G "NMake Makefiles" ^
       -D CMAKE_BUILD_TYPE=Release ^
       -D CMAKE_PREFIX_PATH=%LIBRARY_PREFIX% ^
       -D CMAKE_INSTALL_PREFIX:PATH=%LIBRARY_PREFIX% ^
+      -D ZLIB_OUTPUT_NAME="zlib" ^
       -D INSTALL_PKGCONFIG_DIR=%LIBRARY_PREFIX%\lib\pkgconfig ^
       %SRC_DIR%
 if errorlevel 1 exit 1
@@ -66,6 +67,9 @@ if NOT "%CONDA_BUILD_CROSS_COMPILATION%" == "1" (
 
 :: Some OSS libraries are happier if z.lib exists, even though it's not typical on Windows.
 copy %LIBRARY_LIB%\zlib.lib %LIBRARY_LIB%\z.lib || exit 1
+
+:: install zlibstatic.lib for backwards compat
+move %LIBRARY_LIB%\zs.lib %LIBRARY_LIB%\zlibstatic.lib || exit 1
 
 :: Qt in particular goes looking for this one (as of 4.8.7).
 copy %LIBRARY_LIB%\zlib.lib %LIBRARY_LIB%\zdll.lib || exit 1
