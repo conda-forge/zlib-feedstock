@@ -16,10 +16,10 @@ build:
 
 requirements:
   build:
-    - cmake                 # [win]
+    - cmake
+    - ninja
     - {{ compiler('c') }}
     - {{ stdlib('c') }}
-    - make                  # [unix]
   run:
 
 outputs:
