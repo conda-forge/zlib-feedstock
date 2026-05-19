@@ -1,0 +1,16 @@
+c_compiler:
+  - if: not unix
+    then:
+      - clang_bootstrap
+    else:
+      - gcc_bootstrap
+
+c_stdlib_version:
+  - if: linux and not (x86_64 or aarch64 or ppc64le or s390x)
+    then:
+      - "2.39"
+
+zig_compiler:
+  - zig
+zig_compiler_version:
+  - "0.15.2"

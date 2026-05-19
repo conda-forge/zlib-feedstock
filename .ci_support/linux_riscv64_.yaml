@@ -1,0 +1,20 @@
+c_compiler:
+- gcc_bootstrap
+c_compiler_version:
+- '14'
+c_stdlib:
+- sysroot
+c_stdlib_version:
+- '2.39'
+channel_sources:
+- conda-forge
+channel_targets:
+- conda-forge main
+docker_image:
+- quay.io/condaforge/linux-anvil-x86_64:alma10
+target_platform:
+- linux-riscv64
+zig_compiler:
+- zig
+zig_compiler_version:
+- 0.15.2

@@ -16,7 +16,6 @@ Documentation: http://zlib.net/manual.html
 zlib is designed to be a free, general-purpose, lossless data-compression
 library for use on virtually any computer hardware and operating system.
 
-
 Current build status
 ====================
 
@@ -53,6 +52,13 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=2250&branchName=main">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/zlib-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_riscv64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=2250&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/zlib-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_riscv64_" alt="variant">
                 </a>
               </td>
             </tr><tr>

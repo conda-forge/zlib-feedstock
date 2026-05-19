@@ -3,7 +3,7 @@ MACOSX_DEPLOYMENT_TARGET:
 MACOSX_SDK_VERSION:
 - '11.0'
 c_compiler:
-- clang_bootstrap
+- gcc_bootstrap
 c_compiler_version:
 - '19'
 c_stdlib:
@@ -18,3 +18,7 @@ macos_machine:
 - arm64-apple-darwin20.0.0
 target_platform:
 - osx-arm64
+zig_compiler:
+- zig
+zig_compiler_version:
+- 0.15.2
