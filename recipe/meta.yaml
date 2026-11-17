@@ -3,7 +3,7 @@
 
 package:
   name: zlib-split
-  version: {{ version }}
+  version: "{{ version }}"
 
 source:
   url:
